@@ -2,7 +2,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.contracts.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.contracts.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'route' => ['admin.contracts.store'], 'enctype' => 'multipart/form-data']) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -26,18 +26,52 @@
 
             <!-- New From Elements -->
 
-
-
-
+            <div class="row">
+              <div class="col-xs-12 form-group">
+                {!! Form::label('salutation', 'Anrede', ['class' => 'control-label']) !!}
+                {!! Form::select('salutation', ['H' => 'Herr', 'Fr.' => 'Frau', 'Dr.' => 'Doktor'], 'H', ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                <p class="help-block"></p>
+                @if($errors->has('salutation'))
+                <p class="help-block">
+                  {{ $errors->first('salutation') }}
+                </p>
+                @endif
+              </div>
+            </div>
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('salutation', 'Anrede', ['class' => 'control-label']) !!}
-                    {!! Form::select('salutation', ['H' => 'Herr', 'Fr.' => 'Frau', 'Dr.' => 'Doktor'], 'H', ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('firstname', 'Vorname', ['class' => 'control-label']) !!}
+                    {!! Form::text('firstname', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('salutation'))
+                    @if($errors->has('firstname'))
                         <p class="help-block">
-                            {{ $errors->first('salutation') }}
+                            {{ $errors->first('firstname') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('lastname', 'Nachname', ['class' => 'control-label']) !!}
+                    {!! Form::text('lastname', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('lastname'))
+                        <p class="help-block">
+                            {{ $errors->first('lastname') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('ziehler', 'Zihler', ['class' => 'control-label']) !!}
+                    {!! Form::text('ziehler', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('ziehler'))
+                        <p class="help-block">
+                            {{ $errors->first('ziehler') }}
                         </p>
                     @endif
                 </div>
@@ -45,10 +79,13 @@
 
 
 
+
+
+
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('records', 'Lastenheft', ['class' => 'control-label']) !!}
-                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '', 'accept'=> '.csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('records'))
                         <p class="help-block">
@@ -87,9 +124,9 @@
                     {!! Form::label('consumption_nt', 'NT', ['class' => 'control-label']) !!}
                     {!! Form::number('consumption_nt', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('telephone')  )
+                    @if($errors->has('consumption')  )
                         <p class="help-block">
-                            {{ $errors->first('telephone') }}
+                            {{ $errors->first('consumption') }}
                         </p>
                     @endif
                 </div>
@@ -98,12 +135,12 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('netzbeschreiben', 'Netzbeschreiben', ['class' => 'control-label']) !!}
-                    {!! Form::text('netzbeschreiben', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('netzbetrieber', 'Netzbetrieber', ['class' => 'control-label']) !!}
+                    {!! Form::text('netzbetrieber', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('netzbeschreiben'))
+                    @if($errors->has('netzbetrieber'))
                         <p class="help-block">
-                            {{ $errors->first('netzbeschreiben') }}
+                            {{ $errors->first('netzbetrieber') }}
                         </p>
                     @endif
                 </div>
@@ -124,9 +161,9 @@
                     {!! Form::label('spannungsnetz_hs', 'HS', ['class' => 'control-label']) !!}
                     {!! Form::number('spannungsnetz_hs', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('telephone')  )
+                    @if($errors->has('spannung')  )
                         <p class="help-block">
-                            {{ $errors->first('telephone') }}
+                            {{ $errors->first('spannung') }}
                         </p>
                     @endif
                 </div>
