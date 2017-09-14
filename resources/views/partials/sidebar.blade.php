@@ -83,14 +83,14 @@
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">
                     <i class="fa fa-key"></i>
-                    <span class="title">@lang('quickadmin.qa_change_password')</span>
+                    <span class="title">Passwort ändern</span>
                 </a>
             </li>
 
             <li>
                 <a href="#logout" onclick="$('#logout').submit();">
                     <i class="fa fa-arrow-left"></i>
-                    <span class="title">@lang('quickadmin.qa_logout')</span>
+                    <span class="title">Abmelden</span>
                 </a>
             </li>
         </ul>

@@ -6,9 +6,10 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_create')
+          <!-- <h4>  @lang('quickadmin.qa_create')</h4> -->
+          <h4>Anlegen</h4>
         </div>
-        
+
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
@@ -22,6 +23,128 @@
                     @endif
                 </div>
             </div>
+
+            <!-- New From Elements -->
+
+
+
+
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('salutation', 'Anrede', ['class' => 'control-label']) !!}
+                    {!! Form::select('salutation', ['H' => 'Herr', 'Fr.' => 'Frau', 'Dr.' => 'Doktor'], 'H', ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('salutation'))
+                        <p class="help-block">
+                            {{ $errors->first('salutation') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('records', 'Lastenheft', ['class' => 'control-label']) !!}
+                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('records'))
+                        <p class="help-block">
+                            {{ $errors->first('records') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('telephone', 'Tel.', ['class' => 'control-label']) !!}
+                    {!! Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('mobil', 'Mobil', ['class' => 'control-label']) !!}
+                    {!! Form::text('mobil', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('fax', 'Fax', ['class' => 'control-label']) !!}
+                    {!! Form::text('fax', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('telephone')  )
+                        <p class="help-block">
+                            {{ $errors->first('telephone') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12 form-group">
+              <h4>{!! Form::label('consumption', 'Verbrauch', ['class' => 'control-label']) !!}</h4>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('consumption_ht', 'HT', ['class' => 'control-label']) !!}
+                    {!! Form::number('consumption_ht', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    {!! Form::label('consumption_nt', 'NT', ['class' => 'control-label']) !!}
+                    {!! Form::number('consumption_nt', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('telephone')  )
+                        <p class="help-block">
+                            {{ $errors->first('telephone') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('netzbeschreiben', 'Netzbeschreiben', ['class' => 'control-label']) !!}
+                    {!! Form::text('netzbeschreiben', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('netzbeschreiben'))
+                        <p class="help-block">
+                            {{ $errors->first('netzbeschreiben') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-xs-12 form-group">
+              <h4>{!! Form::label('spannung', 'Spannungsnetz', ['class' => 'control-label']) !!}</h4>
+              </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('spannungsnetz_ms', 'MS', ['class' => 'control-label']) !!}
+                    {!! Form::number('spannungsnetz_ms', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    {!! Form::label('spannungsnetz_hs', 'HS', ['class' => 'control-label']) !!}
+                    {!! Form::number('spannungsnetz_hs', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('telephone')  )
+                        <p class="help-block">
+                            {{ $errors->first('telephone') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- New From Elements -->
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('end_date', trans('quickadmin.contracts.fields.end-date').'*', ['class' => 'control-label']) !!}
@@ -46,7 +169,7 @@
                     @endif
                 </div>
             </div>
-            
+
         </div>
     </div>
 
