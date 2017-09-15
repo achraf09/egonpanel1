@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreGroupsRequest;
 use App\Http\Requests\Admin\UpdateGroupsRequest;
 use Yajra\Datatables\Datatables;
-
+use DB;
 class GroupsController extends Controller
 {
     /**
@@ -24,13 +24,13 @@ class GroupsController extends Controller
         }
 
 
-        
+
         if (request()->ajax()) {
             $query = Group::query();
             $query->with("admin");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
-                
+
         if (! Gate::allows('group_delete')) {
             return abort(401);
         }
@@ -73,8 +73,11 @@ class GroupsController extends Controller
         if (! Gate::allows('group_create')) {
             return abort(401);
         }
-        
-        $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $admins = \App\User::select(
+            DB::raw("CONCAT(name,' ',lastname) AS name"),'id')
+            ->where('role_id',2)
+            ->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        // $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.groups.create', compact('admins'));
     }
@@ -109,7 +112,7 @@ class GroupsController extends Controller
         if (! Gate::allows('group_edit')) {
             return abort(401);
         }
-        
+
         $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $group = Group::findOrFail($id);
@@ -149,7 +152,7 @@ class GroupsController extends Controller
         if (! Gate::allows('group_view')) {
             return abort(401);
         }
-        
+
         $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$users = \App\User::where('group_id', $id)->get();
 
         $group = Group::findOrFail($id);

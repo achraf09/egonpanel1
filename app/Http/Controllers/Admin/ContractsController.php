@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+include 'C:\xampp\php\PEAR\ChromePhp.php';
 use App\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreContractsRequest;
 use App\Http\Requests\Admin\UpdateContractsRequest;
 use Yajra\Datatables\Datatables;
-
+use DB;
 class ContractsController extends Controller
 {
     /**
@@ -24,13 +24,13 @@ class ContractsController extends Controller
         }
 
 
-        
+
         if (request()->ajax()) {
             $query = Contract::query();
             $query->with("owner");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
-                
+
         if (! Gate::allows('contract_delete')) {
             return abort(401);
         }
@@ -76,8 +76,12 @@ class ContractsController extends Controller
         if (! Gate::allows('contract_create')) {
             return abort(401);
         }
-        
-        $owners = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+
+        // ChromePhp::log('Hello console!');
+        // $owners = \App\User::get()->pluck(DB::raw("CONCAT(name,' ',lastname) AS name"), 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $owners = \App\User::select(
+            DB::raw("CONCAT(name,' ',lastname) AS name"),'id')
+            ->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.contracts.create', compact('owners'));
     }
@@ -112,7 +116,7 @@ class ContractsController extends Controller
         if (! Gate::allows('contract_edit')) {
             return abort(401);
         }
-        
+
         $owners = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $contract = Contract::findOrFail($id);

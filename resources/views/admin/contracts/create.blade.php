@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('firstname', 'Vorname', ['class' => 'control-label']) !!}
-                    {!! Form::text('firstname', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('firstname'))
                         <p class="help-block">
@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('lastname', 'Nachname', ['class' => 'control-label']) !!}
-                    {!! Form::text('lastname', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('lastname'))
                         <p class="help-block">
@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('ziehler', 'Zihler', ['class' => 'control-label']) !!}
-                    {!! Form::text('ziehler', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::text('ziehler', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('ziehler'))
                         <p class="help-block">
@@ -85,7 +85,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('records', 'Lastenheft', ['class' => 'control-label']) !!}
-                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '', 'accept'=> '.csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']) !!}
+                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '', 'accept'=> '.csv']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('records'))
                         <p class="help-block">
@@ -136,7 +136,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('netzbetrieber', 'Netzbetrieber', ['class' => 'control-label']) !!}
-                    {!! Form::text('netzbetrieber', null, ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::text('netzbetrieber', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('netzbetrieber'))
                         <p class="help-block">
@@ -170,14 +170,35 @@
             </div>
 
 
+<!-- ############################################################################################################################################################ -->
+
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>dghdfghdfghdf</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 
 
-
-
-
-
+<!-- ############################################################################################################################################################# -->
 
 
 
@@ -221,6 +242,33 @@
             autoclose: true,
             dateFormat: "{{ config('app.date_format_js') }}"
         });
+
+        // var fileInput = document.getElementById("records"),
+        //
+        //     readFile = function () {
+        //         var reader = new FileReader();
+        //         reader.onload = function () {
+        //             document.getElementById('myModal').innerHTML = reader.result;
+        //         };
+        //         // start reading the file. When it is done, calls the onload event defined above.
+        //         reader.readAsBinaryString(fileInput.files[0]);
+        //     };
+
+        // fileInput.addEventListener('change', readFile);
+
+       $("#records").change(function(){
+           var fileInput = document.getElementById("records");
+               var reader = new FileReader();
+               reader.readAsBinaryString(fileInput.files[0]);
+          //     function () {
+          console.log('File read!');
+             document.getElementById('myModal').innerHTML = reader.result;
+          // };
+        $('#myModal').modal('show');
+     });
+
+
     </script>
+
 
 @stop
