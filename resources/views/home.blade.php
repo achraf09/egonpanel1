@@ -7,7 +7,7 @@
                 <div class="panel-heading">@lang('quickadmin.qa_dashboard')</div>
 
                 <div class="panel-body">
-                    @lang('quickadmin.qa_dashboard_text')
+                    @lang('quickadmin.qa_dashboard_text') as {!! Auth::getUser()->name.' '.Auth::getUser()->lastname; !!}!
                 </div>
             </div>
         </div>

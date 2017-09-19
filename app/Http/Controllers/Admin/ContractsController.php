@@ -10,6 +10,9 @@ use App\Http\Requests\Admin\StoreContractsRequest;
 use App\Http\Requests\Admin\UpdateContractsRequest;
 use Yajra\Datatables\Datatables;
 use DB;
+use Carbon\Carbon;
+use Illuminate\Contracts\Filesystem;
+use Illuminate\Support\Facades\Storage;
 class ContractsController extends Controller
 {
     /**
@@ -97,6 +100,8 @@ class ContractsController extends Controller
         if (! Gate::allows('contract_create')) {
             return abort(401);
         }
+        if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
+        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s'));
         $contract = Contract::create($request->all());
 
 

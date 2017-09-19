@@ -209,7 +209,7 @@ return [
 	'qa_current_password' => 'Current password',
 	'qa_new_password' => 'New password',
 	'qa_password_confirm' => 'New password confirmation',
-	'qa_dashboard_text' => 'You are logged in!',
+	'qa_dashboard_text' => 'You are logged in',
 	'qa_forgot_password' => 'Forgot your password?',
 	'qa_remember_me' => 'Remember me',
 	'qa_login' => 'Login',

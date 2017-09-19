@@ -41,24 +41,24 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('firstname', 'Vorname', ['class' => 'control-label']) !!}
-                    {!! Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('f_name', 'Vorname', ['class' => 'control-label']) !!}
+                    {!! Form::text('f_name', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('firstname'))
+                    @if($errors->has('f_name'))
                         <p class="help-block">
-                            {{ $errors->first('firstname') }}
+                            {{ $errors->first('f_name') }}
                         </p>
                     @endif
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('lastname', 'Nachname', ['class' => 'control-label']) !!}
-                    {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('l_name', 'Nachname', ['class' => 'control-label']) !!}
+                    {!! Form::text('l_name', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('lastname'))
+                    @if($errors->has('l_name'))
                         <p class="help-block">
-                            {{ $errors->first('lastname') }}
+                            {{ $errors->first('l_name') }}
                         </p>
                     @endif
                 </div>
@@ -66,8 +66,8 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('ziehler', 'Zihler', ['class' => 'control-label']) !!}
-                    {!! Form::text('ziehler', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('zihlerpunktnummer', 'Zihler', ['class' => 'control-label']) !!}
+                    {!! Form::number('zihlerpunktnummer', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('ziehler'))
                         <p class="help-block">
@@ -84,7 +84,7 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('records', 'Lastenheft', ['class' => 'control-label']) !!}
+                    {!! Form::label('records', 'Lastgang', ['class' => 'control-label']) !!}
                     {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '', 'accept'=> '.csv']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('records'))
@@ -99,8 +99,8 @@
                 <div class="col-xs-12 form-group">
                     {!! Form::label('telephone', 'Tel.', ['class' => 'control-label']) !!}
                     {!! Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-                    {!! Form::label('mobil', 'Mobil', ['class' => 'control-label']) !!}
-                    {!! Form::text('mobil', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('mobile', 'Mobil', ['class' => 'control-label']) !!}
+                    {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     {!! Form::label('fax', 'Fax', ['class' => 'control-label']) !!}
                     {!! Form::text('fax', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
@@ -119,10 +119,10 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('consumption_ht', 'HT', ['class' => 'control-label']) !!}
-                    {!! Form::number('consumption_ht', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
-                    {!! Form::label('consumption_nt', 'NT', ['class' => 'control-label']) !!}
-                    {!! Form::number('consumption_nt', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    {!! Form::label('consumption_HT', 'HT', ['class' => 'control-label']) !!}
+                    {!! Form::number('consumption_HT', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    {!! Form::label('consumption_NT', 'NT', ['class' => 'control-label']) !!}
+                    {!! Form::number('consumption_NT', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('consumption')  )
                         <p class="help-block">
@@ -135,12 +135,12 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('netzbetrieber', 'Netzbetrieber', ['class' => 'control-label']) !!}
-                    {!! Form::text('netzbetrieber', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('powersupplier', 'Netzbetrieber', ['class' => 'control-label']) !!}
+                    {!! Form::text('powersupplier', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('netzbetrieber'))
+                    @if($errors->has('powersupplier'))
                         <p class="help-block">
-                            {{ $errors->first('netzbetrieber') }}
+                            {{ $errors->first('powersupplier') }}
                         </p>
                     @endif
                 </div>
@@ -156,10 +156,10 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('spannungsnetz_ms', 'MS', ['class' => 'control-label']) !!}
-                    {!! Form::number('spannungsnetz_ms', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
-                    {!! Form::label('spannungsnetz_hs', 'HS', ['class' => 'control-label']) !!}
-                    {!! Form::number('spannungsnetz_hs', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    {!! Form::label('tension_MS', 'MS', ['class' => 'control-label']) !!}
+                    {!! Form::number('tension_MS', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
+                    {!! Form::label('tension_HS', 'HS', ['class' => 'control-label']) !!}
+                    {!! Form::number('tension_HS', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '', 'step' =>'0.001','min' => '0']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('spannung')  )
                         <p class="help-block">
@@ -206,7 +206,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('end_date', trans('quickadmin.contracts.fields.end-date').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('end_date', old('end_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::text('end_date', old('end_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '', 'minDate'=>'0']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('end_date'))
                         <p class="help-block">
@@ -240,6 +240,7 @@
     <script>
         $('.date').datepicker({
             autoclose: true,
+            minDate: 0,
             dateFormat: "{{ config('app.date_format_js') }}"
         });
 
