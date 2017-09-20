@@ -6,7 +6,7 @@
     @can('group_create')
     <p>
         <a href="{{ route('admin.groups.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
+
     </p>
     @endcan
 
@@ -35,6 +35,7 @@
 
                         <th>@lang('quickadmin.groups.fields.grp-name')</th>
                         <th>@lang('quickadmin.groups.fields.admin')</th>
+                        <!-- <th>Adminsnachname</th> -->
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -47,7 +48,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('group_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.groups.mass_destroy') }}'; @endif
@@ -62,7 +63,7 @@
                 @endcan
                 {data: 'grp_name', name: 'grp_name'},
                 {data: 'admin.name', name: 'admin.name'},
-                
+                // {data: 'admin.lastname', lastname: 'admin.lastname'},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
             processAjaxTables();

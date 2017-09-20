@@ -18,7 +18,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.groups.fields.admin')</th>
-                            <td field-key='admin'>{{ $group->admin->name or '' }}</td>
+                            <td field-key='admin'>{{ $group->admin->name.' '.$group->admin->lastname }}</td>
                         </tr>
                     </table>
                 </div>

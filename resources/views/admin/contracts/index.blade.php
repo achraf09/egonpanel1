@@ -6,7 +6,7 @@
     @can('contract_create')
     <p>
         <a href="{{ route('admin.contracts.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
+
     </p>
     @endcan
 
@@ -49,7 +49,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('contract_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.contracts.mass_destroy') }}'; @endif
@@ -66,7 +66,7 @@
                 {data: 'end_date', name: 'end_date'},
                 {data: 'owner.name', name: 'owner.name'},
                 {data: 'owner.lastname', name: 'owner.lastname'},
-                
+
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
             processAjaxTables();

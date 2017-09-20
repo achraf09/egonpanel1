@@ -24,10 +24,18 @@ class GroupsController extends Controller
         }
 
 
+        $user = \Auth::user();
 
         if (request()->ajax()) {
             $query = Group::query();
-            $query->with("admin");
+          //  $query = Contract::query();
+            if (\Auth::getUser()->id==1) {
+              $query->with("admin");
+            }
+            else {
+              $query->with("admin")->where('admin_id',$user->id)->get();
+            }
+          //  $query->with("admin");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
 
@@ -54,8 +62,11 @@ class GroupsController extends Controller
                 return $row->grp_name ? $row->grp_name : '';
             });
             $table->editColumn('admin.name', function ($row) {
-                return $row->admin ? $row->admin->name : '';
+                return $row->admin ? $row->admin->name."\t".$row->admin->lastname : '';
             });
+            // $table->editColumn('admin.lastname', function ($row) {
+            //     return $row->admin ? $row->admin->lastname : '';
+            // });
 
             return $table->make(true);
         }

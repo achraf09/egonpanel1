@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\UpdateContractsRequest;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
+use Illuminate\Contracts\Logging\Log;
 use Illuminate\Contracts\Filesystem;
 use Illuminate\Support\Facades\Storage;
 class ContractsController extends Controller
@@ -27,10 +28,16 @@ class ContractsController extends Controller
         }
 
 
+        $user = \Auth::user();
 
         if (request()->ajax()) {
             $query = Contract::query();
-            $query->with("owner");
+            if (\Auth::getUser()->id==1 || \Auth::getUser()->id==2) {
+              $query->with("owner");
+            }
+            else {
+              $query->with("owner")->where('owner_id',$user->id)->get();
+            }
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
 
@@ -101,7 +108,7 @@ class ContractsController extends Controller
             return abort(401);
         }
         if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
-        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s'));
+        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.'csv');
         $contract = Contract::create($request->all());
 
 

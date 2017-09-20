@@ -185,7 +185,7 @@
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>dghdfghdfghdf</p>
+          <p>Datei ausgewählt</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -258,12 +258,8 @@
         // fileInput.addEventListener('change', readFile);
 
        $("#records").change(function(){
-           var fileInput = document.getElementById("records");
-               var reader = new FileReader();
-               reader.readAsBinaryString(fileInput.files[0]);
           //     function () {
           console.log('File read!');
-             document.getElementById('myModal').innerHTML = reader.result;
           // };
         $('#myModal').modal('show');
      });
