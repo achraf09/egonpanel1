@@ -6,14 +6,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ ucfirst(config('app.name')) }} @lang('quickadmin.qa_login')</div>
                 <div class="panel-body">
-                    
+
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were problems with input:
+                            <strong>Whoops!</strong> Etwas ist schiefgelaufen!
                             <br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li><!--{{ $error }}--> Die Email oder das Passwort ist nicht in unserem Datenbank zu finden</li>
                                 @endforeach
                             </ul>
                         </div>

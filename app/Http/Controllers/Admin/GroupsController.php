@@ -28,6 +28,7 @@ class GroupsController extends Controller
 
         if (request()->ajax()) {
             $query = Group::query();
+            
           //  $query = Contract::query();
             if (\Auth::getUser()->id==1) {
               $query->with("admin");
