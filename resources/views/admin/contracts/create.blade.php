@@ -66,7 +66,7 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('zihlerpunktnummer', 'Zihler', ['class' => 'control-label']) !!}
+                    {!! Form::label('zihlerpunktnummer', 'Zählepunktnummer', ['class' => 'control-label']) !!}
                     {!! Form::number('zihlerpunktnummer', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('ziehler'))

@@ -109,6 +109,10 @@ class ContractsController extends Controller
         }
         if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
         $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.'csv');
+        $file = fopen($path, 'r');
+        while (($line = fgetcsv($file))!== FALSE){
+
+        }
         $contract = Contract::create($request->all());
 
 

@@ -18,7 +18,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/home', 'HomeController@index');
-    
+
     Route::resource('roles', 'Admin\RolesController');
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('contracts_mass_destroy', ['uses' => 'Admin\ContractsController@massDestroy', 'as' => 'contracts.mass_destroy']);
     Route::post('contracts_restore/{id}', ['uses' => 'Admin\ContractsController@restore', 'as' => 'contracts.restore']);
     Route::delete('contracts_perma_del/{id}', ['uses' => 'Admin\ContractsController@perma_del', 'as' => 'contracts.perma_del']);
-
+    Route::resource('companies', 'Admin\PartnerCompaniesController');
+    //Route::post('companies_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
 
 });

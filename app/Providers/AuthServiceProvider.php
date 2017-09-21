@@ -109,6 +109,19 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('contract_delete', function ($user) {
             return in_array($user->role_id, [1, 2, 3]);
         });
+        //Auth gates for:  betriebspartners
+        Gate::define('betriebspartner_access', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('betriebspartner_create', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('betriebspartner_delete', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('betriebspartner_show', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
 
     }
 }
