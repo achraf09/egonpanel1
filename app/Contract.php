@@ -17,7 +17,7 @@ class Contract extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['contractsname', 'end_date', 'owner_id','salutation','f_name','l_name','zihlerpunktnummer','telephone','mobile','fax','consumption_HT','consumption_NT','powersupplier','tension_MS','tension_HS'];
+    protected $fillable = ['contractsname', 'end_date', 'owner_id','salutation','f_name','l_name','addresse','zihlerpunktnummer','telephone','mobile','fax','consumption_HT','consumption_NT','powersupplier','tension_MS','tension_HS','records'];
 
     public static function boot()
     {

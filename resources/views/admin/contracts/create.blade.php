@@ -66,6 +66,19 @@
 
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('addresse', 'Addresse', ['class' => 'control-label']) !!}
+                    {!! Form::text('addresse', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('addresse'))
+                        <p class="help-block">
+                            {{ $errors->first('addresse') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('zihlerpunktnummer', 'Zählepunktnummer', ['class' => 'control-label']) !!}
                     {!! Form::number('zihlerpunktnummer', null, ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>

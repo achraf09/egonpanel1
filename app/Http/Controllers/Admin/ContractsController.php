@@ -108,13 +108,35 @@ class ContractsController extends Controller
             return abort(401);
         }
         if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
-        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.'csv');
-        $file = fopen($path, 'r');
+        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.'.csv');
+        $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+        //dd($path);
+        $contract = new Contract();
+        $contract->contractsname= $request->contractsname;
+        $contract->salutation= $request->salutation;
+        $contract->f_name= $request->f_name;
+        $contract->l_name=$request->l_name;
+        $contract->addresse=$request->addresse;
+        $contract->zihlerpunktnummer=$request->zihlerpunktnummer;
+        $contract->telephone=$request->telephone;
+        $contract->mobile=$request->mobile;
+        $contract->fax=$request->fax;
+        $contract->consumption_HT=$request->consumption_HT;
+        $contract->consumption_NT=$request->consumption_NT;
+        $contract->powersupplier=$request->powersupplier;
+        $contract->tension_MS=$request->tension_MS;
+        $contract->tension_HS=$request->tension_HS;
+        $contract->end_date=$request->end_date;
+        $contract->owner_id=$request->owner_id;
+        $contract->records=$path;
+        // $contract = Contract::create($request->all());
+        $contract->save();
+        $file = fopen($storagePath.''.$path, "r");
+
         while (($line = fgetcsv($file))!== FALSE){
+          dd('Here is the File being read!!!!!!!!!!!!!!!!!!!!');
 
         }
-        $contract = Contract::create($request->all());
-
 
 
         return redirect()->route('admin.contracts.index');
@@ -173,6 +195,17 @@ class ContractsController extends Controller
             return abort(401);
         }
         $contract = Contract::findOrFail($id);
+        //show the csv File content
+        $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+        $file = fopen($storagePath.''.$contract->records, "r");
+        if (($file = fopen($storagePath.''.$contract->records, "r")) !== FALSE) {
+          while (($line = fgetcsv($file,1000,';'))!== FALSE){
+
+
+
+          }
+        }
+
 
         return view('admin.contracts.show', compact('contract'));
     }
@@ -248,4 +281,12 @@ class ContractsController extends Controller
 
         return redirect()->route('admin.contracts.index');
     }
+    private function _import_csv($path, $filename)
+    {
+
+        $csv = $path . $filename;
+        $query = sprintf("LOAD DATA local INFILE '%s' INTO TABLE users FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' ESCAPED BY '\"' LINES TERMINATED BY '\\n' IGNORE 0 LINES (`firstname`, `lastname`, `username`, `gender`, `email`, `country`, `ethnicity`, `education`  )", addslashes($csv));
+    return DB::connection()->getpdo()->exec($query);
+
+}
 }

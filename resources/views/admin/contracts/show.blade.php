@@ -72,6 +72,13 @@
                         </tr>
                     </table>
                 </div>
+                <div id="csvtable" class="col-md-6"><h1>Hier wird den Lastgang gezeigt</h1>
+
+                  
+
+
+
+                </div>
             </div>
 
             <p>&nbsp;</p>
@@ -80,3 +87,25 @@
         </div>
     </div>
 @stop
+
+@section('javascript')
+<script src="d3.min.js?v=3.2.8"></script>
+
+    <script>
+    d3.text("data.csv", function(data) {
+            var parsedCSV = d3.csv.parseRows(data);
+
+            var container = d3.select("#csvtable")
+                .append("table")
+
+                .selectAll("tr")
+                    .data(parsedCSV).enter()
+                    .append("tr")
+
+                .selectAll("td")
+                    .data(function(d) { return d; }).enter()
+                    .append("td")
+                    .text(function(d) { return d; });
+        });
+    </script>
+@endsection
