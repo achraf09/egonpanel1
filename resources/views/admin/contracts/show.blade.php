@@ -72,9 +72,23 @@
                         </tr>
                     </table>
                 </div>
-                <div id="csvtable" class="col-md-6"><h1>Hier wird den Lastgang gezeigt</h1>
+                <div id="csvtable" class="col-md-6" style="overflow: auto; height:600px"><h1>Hier wird den Lastgang gezeigt</h1>
 
-                  
+                  <table class="table table-bordered table-striped">
+                    @foreach($file_contents as $line_content)
+                    <tr>
+                      <td>{{ $line_content[0] }}</td>
+                      <td>{{ $line_content[1] }}</td>
+                      <td>{{ $line_content[2] }}</td>
+                      <td>{{ $line_content[3] }}</td>
+                      <td>{{ $line_content[4] }}</td>
+                      <td>{{ $line_content[5] }}</td>
+                    </tr>
+
+                    @endforeach
+
+
+                  </table>
 
 
 
@@ -88,7 +102,7 @@
     </div>
 @stop
 
-@section('javascript')
+<!-- @section('javascript')
 <script src="d3.min.js?v=3.2.8"></script>
 
     <script>
@@ -108,4 +122,4 @@
                     .text(function(d) { return d; });
         });
     </script>
-@endsection
+@endsection -->

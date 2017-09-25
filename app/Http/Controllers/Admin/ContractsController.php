@@ -108,7 +108,8 @@ class ContractsController extends Controller
             return abort(401);
         }
         if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
-        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.'.csv');
+      //  var_dump($request->file('records')->getClientOriginalName());
+        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.$request->file('records')->getClientOriginalName());
         $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
         //dd($path);
         $contract = new Contract();
@@ -198,16 +199,20 @@ class ContractsController extends Controller
         //show the csv File content
         $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
         $file = fopen($storagePath.''.$contract->records, "r");
+        $file_contents = array();
         if (($file = fopen($storagePath.''.$contract->records, "r")) !== FALSE) {
-          while (($line = fgetcsv($file,1000,';'))!== FALSE){
-
+          while (!feof($file)){
+            $line = fgetcsv($file,1000,';');
+            array_push($file_contents, $line);
 
 
           }
         }
+        var_dump($file_contents);
+      fclose($file);
 
 
-        return view('admin.contracts.show', compact('contract'));
+        return view('admin.contracts.show', compact(['contract','file_contents']));
     }
 
 
