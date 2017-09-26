@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-include 'C:\xampp\php\PEAR\ChromePhp.php';
+// include 'C:\xampp\php\PEAR\ChromePhp.php';
+//require_once 'Classes/PHPExcel/IOFactory.php';
 use App\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -14,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Contracts\Filesystem;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 class ContractsController extends Controller
 {
     /**
@@ -110,6 +112,12 @@ class ContractsController extends Controller
         if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
       //  var_dump($request->file('records')->getClientOriginalName());
         $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.$request->file('records')->getClientOriginalName());
+        //var_dump($path->getFileExtension());
+        // Excel::load($path,function ($reader)
+        // {
+        //   $results = $reader->get();
+        //   var_dump($results);
+        // });
         $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
         //dd($path);
         $contract = new Contract();
@@ -203,12 +211,15 @@ class ContractsController extends Controller
         if (($file = fopen($storagePath.''.$contract->records, "r")) !== FALSE) {
           while (!feof($file)){
             $line = fgetcsv($file,1000,';');
+            //$line = array_map("utf8_encode", $line);
             array_push($file_contents, $line);
 
 
           }
         }
+        echo "<pre>";
         var_dump($file_contents);
+        echo "</pre>";
       fclose($file);
 
 
@@ -293,5 +304,10 @@ class ContractsController extends Controller
         $query = sprintf("LOAD DATA local INFILE '%s' INTO TABLE users FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' ESCAPED BY '\"' LINES TERMINATED BY '\\n' IGNORE 0 LINES (`firstname`, `lastname`, `username`, `gender`, `email`, `country`, `ethnicity`, `education`  )", addslashes($csv));
     return DB::connection()->getpdo()->exec($query);
 
-}
+    }
+    public function download_file($filename)
+    {
+        return redirect()->route('admin.contracts.index');
+    }
+
 }

@@ -71,8 +71,9 @@
                           </td>
                         </tr>
                     </table>
+                    <a href="{{ route('admin.contracts.download_file', [$contract->records]) }}" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Brochure </a>
                 </div>
-                <div id="csvtable" class="col-md-6" style="overflow: auto; height:600px"><h1>Hier wird den Lastgang gezeigt</h1>
+                <!-- <div id="csvtable" class="col-md-6" style="overflow: auto; height:600px"><h1>Hier wird den Lastgang gezeigt</h1>
 
                   <table class="table table-bordered table-striped">
                     @foreach($file_contents as $line_content)
@@ -92,6 +93,13 @@
 
 
 
+                </div> -->
+                <div id="chart" class="col-md-6" style="width: 800px; height: 600px;">
+
+
+
+
+
                 </div>
             </div>
 
@@ -101,7 +109,49 @@
         </div>
     </div>
 @stop
+@section('javascript')
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':400,
+                       'height':300,
+                        'is3D' :true};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart'));
+
+        function selectHandler() {
+          var selectedItem = chart.getSelection()[0];
+          if (selectedItem) {
+            var topping = data.getValue(selectedItem.row, 0);
+            alert('The user selected ' + topping);
+          }
+        }
+  // Listen for the 'select' event, and call my function selectHandler() when
+  // the user selects something on the chart.
+  google.visualization.events.addListener(chart, 'select', selectHandler);
+
+        chart.draw(data, options);
+      }
+    </script>
+
+@endsection
 <!-- @section('javascript')
 <script src="d3.min.js?v=3.2.8"></script>
 

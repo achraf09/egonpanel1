@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::delete('groups_perma_del/{id}', ['uses' => 'Admin\GroupsController@perma_del', 'as' => 'groups.perma_del']);
     Route::resource('user_actions', 'Admin\UserActionsController');
     Route::resource('contracts', 'Admin\ContractsController');
+    Route::get('contracts/download_file/{filename}', ['uses' => 'Admin\ContractsController@download_file', 'as' => 'contracts.download_file']);
     Route::post('contracts_mass_destroy', ['uses' => 'Admin\ContractsController@massDestroy', 'as' => 'contracts.mass_destroy']);
     Route::post('contracts_restore/{id}', ['uses' => 'Admin\ContractsController@restore', 'as' => 'contracts.restore']);
     Route::delete('contracts_perma_del/{id}', ['uses' => 'Admin\ContractsController@perma_del', 'as' => 'contracts.perma_del']);
