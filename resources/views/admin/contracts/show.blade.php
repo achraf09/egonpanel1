@@ -94,7 +94,12 @@
 
 
                 </div> -->
-                <div id="chart" class="col-md-6" style="width: 800px; height: 600px;">
+                <div class="col-md-6" >
+                  <button class="chart-update" data-chart-name="chart2" style="align: right;">Nächste Monat</button>
+                  <div id="chart"style="width: 800px; height: 600px;">
+
+
+                  </div>
 
 
 
@@ -102,53 +107,266 @@
 
                 </div>
             </div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('admin.contracts.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+          </div>
         </div>
-    </div>
+          <div class="panel panel-default">
+
+          <div class="panel-body table-responsive">
+
+            <div class="row">
+              <!---->
+              <div class="col-md-12 box" style="margin-bottom: 0">
+                  <div class="box-header orange-background">
+
+                    <div class="actions">
+                      <!-- <a class="btn box-remove btn-xs btn-link" href="#"><i class="fa fa-times"></i>
+                      </a> -->
+                      <!-- <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a> -->
+                    </div>
+                  </div>
+                  <div class="box-content">
+                    <!-- <strong>Resize window to see responsive tabs.</strong> -->
+                    <div class="tabbable" style="margin-top: 20px">
+                      <ul class="nav nav-responsive nav-tabs"><li class="dropdown pull-right tabdrop active"><!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">-<i class="fa fa-bars"></i> <b class="caret"></b>--></a><ul class="dropdown-menu"><li class="">
+                          <!-- <a data-toggle="tab" href="#retab17" aria-expanded="false">
+                            Section 17
+                          </a>
+                        </li><li class="">
+                          <a data-toggle="tab" href="#retab18" aria-expanded="false">
+                            Section 18
+                          </a>
+                        </li><li class="">
+                          <a data-toggle="tab" href="#retab19" aria-expanded="false">
+                            Section 19
+                          </a>
+                        </li><li class="active">
+                          <a data-toggle="tab" href="#retab20" aria-expanded="true">
+                            Section 20
+                          </a> -->
+                        </li></ul></li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab1" aria-expanded="false">
+                            Januar
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab2" aria-expanded="false">
+                            Februar
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab3" aria-expanded="false">
+                            März
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab4" aria-expanded="false">
+                            April
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab5" aria-expanded="false">
+                            Mai
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab6" aria-expanded="false">
+                            Juni
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab7" aria-expanded="false">
+                            Juli
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab8" aria-expanded="false">
+                            August
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab9" aria-expanded="false">
+                            September
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab10" aria-expanded="false">
+                            Oktober
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab11" aria-expanded="false">
+                            November
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab12" aria-expanded="false">
+                            Dezember
+                          </a>
+                        </li>
+                        <!-- <li class="">
+                          <a data-toggle="tab" href="#retab13" aria-expanded="false">
+                            Section 13
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab14" aria-expanded="false">
+                            Section 14
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab15" aria-expanded="false">
+                            Section 15
+                          </a>
+                        </li>
+                        <li class="">
+                          <a data-toggle="tab" href="#retab16" aria-expanded="false">
+                            Section 16
+                          </a>
+                        </li> -->
+
+
+
+
+                      </ul>
+                      <div class="tab-content">
+                        <div id="retab1" class="tab-pane active"><p>bin im Section 1.</p>
+                        </div>
+                        <div id="retab2" class="tab-pane"><p>Section 2.</p>
+                        </div>
+                        <div id="retab3" class="tab-pane"><p> Section 3.</p>
+                        </div>
+                        <div id="retab4" class="tab-pane"><p>Section 4.</p>
+                        </div>
+                        <div id="retab5" class="tab-pane" style="width: 800px; height: 600px;"><p>Section 5.</p>
+                        </div>
+                        <div id="retab6" class="tab-pane"><p>Section 6.</p>
+                        </div>
+                        <div id="retab7" class="tab-pane"><p><?php echo $file_contents[8][3] ?> </p>
+                        </div>
+                        <div id="retab8" class="tab-pane"><p>Section 8.</p>
+                        </div>
+                        <div id="retab9" class="tab-pane"><p>Section 9.</p>
+                        </div>
+                        <div id="retab10" class="tab-pane"><p> Section 10.</p>
+                        </div>
+                        <div id="retab11" class="tab-pane"><p>Section 11.</p>
+                        </div>
+                        <div id="retab12" class="tab-pane"><p>Section 12.</p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!---->
+              <div class="col-md-6" id="chart2" style="width: 800px; height: 600px;">
+                </div>
+            </div>
+          </div>
+
+        <p>&nbsp;</p>
+
+        <a href="{{ route('admin.contracts.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+      </div>
 @stop
+@include('footervar')
 @section('javascript')
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https:://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
+    var file_content = <?php echo json_encode($file_contents[7]) ?>;
+    console.log(file_content);
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
         ]);
 
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300,
-                        'is3D' :true};
+        var options = {
+          title: 'Lastgang für Januar',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart'));
-
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
         function selectHandler() {
-          var selectedItem = chart.getSelection()[0];
-          if (selectedItem) {
-            var topping = data.getValue(selectedItem.row, 0);
-            alert('The user selected ' + topping);
-          }
-        }
+    var selectedItem = chart.getSelection()[0];
+    if (selectedItem) {
+      var value = data.getValue(selectedItem.row, selectedItem.column);
+      alert('The user selected ' + value);
+    }
+  }
+
   // Listen for the 'select' event, and call my function selectHandler() when
   // the user selects something on the chart.
   google.visualization.events.addListener(chart, 'select', selectHandler);
 
         chart.draw(data, options);
       }
+
+
+      google.charts.load('current', {'packages':['corechart']});
+    //  google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart2() {
+      //  var data = google.visualization.DataTable();
+        //   data.addColumn('string',)
+        //
+        //   ['Year', 'Sales', 'Expenses'],
+        //   ['2004',  1000,      400],
+        //   ['2005',  1170,      460],
+        //   ['2006',  660,       1120],
+        //   ['2007',  1030,      540]
+        // ]);
+
+        var options = {
+          title: 'Lastgang',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('retab5'));
+        function selectHandler() {
+    var selectedItem = chart.getSelection()[0];
+    if (selectedItem) {
+      var value = data.getValue(selectedItem.row, selectedItem.column);
+      alert('The user selected ' + value);
+    }
+  }
+
+  // Listen for the 'select' event, and call my function selectHandler() when
+  // the user selects something on the chart.
+  google.visualization.events.addListener(chart, 'select', selectHandler);
+
+        //chart.draw(data, options);
+      }
+
     </script>
 
 @endsection

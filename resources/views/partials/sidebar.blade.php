@@ -79,7 +79,7 @@
             <li class="{{ $request->segment(2) == 'partnercompanies' ? 'active' : '' }}">
                 <a href="{{ route('admin.companies.index') }}">
                     <i class="fa fa-files-o"></i>
-                    <span class="title">Betriebspartner</span>
+                    <span class="title">Vertriebspartner</span>
                 </a>
             </li>
             @endcan

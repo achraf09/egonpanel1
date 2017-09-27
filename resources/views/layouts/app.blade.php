@@ -14,7 +14,7 @@
 @include('partials.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="height: 880; overflow-y:scroll;">
         <!-- Main content -->
         <section class="content">
             @if(isset($siteTitle))

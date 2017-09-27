@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\UpdateContractsRequest;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
+use JavaScript;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Contracts\Filesystem;
 use Illuminate\Support\Facades\Storage;
@@ -217,10 +218,11 @@ class ContractsController extends Controller
 
           }
         }
-        echo "<pre>";
-        var_dump($file_contents);
-        echo "</pre>";
+        // echo "<pre>";
+        // var_dump($file_contents);
+        // echo "</pre>";
       fclose($file);
+      
 
 
         return view('admin.contracts.show', compact(['contract','file_contents']));
