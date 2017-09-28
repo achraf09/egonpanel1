@@ -231,7 +231,7 @@
 
                       </ul>
                       <div class="tab-content">
-                        <div id="retab1" class="tab-pane active"><p>bin im Section 1.</p>
+                        <div id="retab1" class="tab-pane active" style="width: 1000px; height: 600px;"><p>bin im Section 1.</p>
                         </div>
                         <div id="retab2" class="tab-pane"><p>Section 2.</p>
                         </div>
@@ -239,7 +239,7 @@
                         </div>
                         <div id="retab4" class="tab-pane"><p>Section 4.</p>
                         </div>
-                        <div id="retab5" class="tab-pane" style="width: 800px; height: 600px;"><p>Section 5.</p>
+                        <div id="retab5" class="tab-pane" style="width: 1900px; height: 600px;"><p>Section 5.</p>
                         </div>
                         <div id="retab6" class="tab-pane"><p>Section 6.</p>
                         </div>
@@ -294,7 +294,25 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https:://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-    var file_content = <?php echo json_encode($file_contents[7]) ?>;
+    function myFunction(dateS) {
+    var value   = dateS;
+var dateArr = value.split(' ');
+var date    = dateArr.shift().split('.');
+var timeArr = dateArr.pop().split(':');
+var hours   = timeArr.shift();
+var minutes = timeArr.pop();
+
+if (minutes.toLowerCase().indexOf('pm') != -1) {
+    hours = (+hours) + 12;
+}
+
+minutes = minutes.replace(/\D/g, '');
+
+var d = new Date(date[2], date[0]-1, date[1], hours, minutes);
+
+    document.getElementById("demo").innerHTML = d.toString();
+}
+    var file_content = <?php echo json_encode($file_contents) ?>;
     console.log(file_content);
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -330,13 +348,30 @@
         chart.draw(data, options);
       }
 
-
+//##############################################################################################################################################################
       google.charts.load('current', {'packages':['corechart']});
-    //  google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
-      //  var data = google.visualization.DataTable();
-        //   data.addColumn('string',)
+        var data = new google.visualization.DataTable();
+        var charData = [];
+           data.addColumn('string',file_content[7][0]);
+           data.addColumn('number',file_content[7][3]);
+           var c=0;
+           //if (!charData[c]) a[c] = [];
+           var a=8,b=2984;
+           for (var i = a; i < b; i++) {
+             for(var j=c; j<b-a;j++){
+               if (!charData[j]) charData[j] = [];
+             charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
+             charData[j][1] = file_content[i][3].replace(".", "");;
+             charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
+
+             c++;
+             console.log(c);break;
+              }
+            }
+          //  console.log(charData);
         //
         //   ['Year', 'Sales', 'Expenses'],
         //   ['2004',  1000,      400],
@@ -344,14 +379,16 @@
         //   ['2006',  660,       1120],
         //   ['2007',  1030,      540]
         // ]);
-
+        data.addRows(charData);
+        console.log(data);
         var options = {
           title: 'Lastgang',
           curveType: 'function',
-          legend: { position: 'bottom' }
+          legend: { position: 'bottom' },
+          width: 1750, height: 600
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('retab5'));
+        var chart = new google.visualization.LineChart(document.getElementById('retab1'));
         function selectHandler() {
     var selectedItem = chart.getSelection()[0];
     if (selectedItem) {
@@ -364,9 +401,9 @@
   // the user selects something on the chart.
   google.visualization.events.addListener(chart, 'select', selectHandler);
 
-        //chart.draw(data, options);
+        chart.draw(data, options);
       }
-
+//#####################################################################################################################################################
     </script>
 
 @endsection
