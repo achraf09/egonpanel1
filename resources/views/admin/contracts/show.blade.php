@@ -63,7 +63,7 @@
                           <td>{{ $contract->powersupplier }}</td>
                         </tr>
                         <tr>
-                          <th>Spannung</th>
+                          <th>Spannung</th>1
                           <td>
                             <strong>MS :</strong>{{ $contract->tension_MS }}
                             <hr>
@@ -71,7 +71,7 @@
                           </td>
                         </tr>
                     </table>
-                    <a href="{{ route('admin.contracts.download_file', [$contract->records]) }}" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Download Brochure </a>
+                    <a href="{{url('/contracts/'.$contract->id.'/downloadfile/'.str_replace("Records/", "",$contract->records))}}" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> {{$contract->records}} </a>
                 </div>
                 <!-- <div id="csvtable" class="col-md-6" style="overflow: auto; height:600px"><h1>Hier wird den Lastgang gezeigt</h1>
 
@@ -382,7 +382,7 @@ var d = new Date(date[2], date[0]-1, date[1], hours, minutes);
         data.addRows(charData);
         console.log(data);
         var options = {
-          title: 'Lastgang',
+          title: 'Lastgang für Januar',
           curveType: 'function',
           legend: { position: 'bottom' },
           width: 1750, height: 600
@@ -404,6 +404,234 @@ var d = new Date(date[2], date[0]-1, date[1], hours, minutes);
         chart.draw(data, options);
       }
 //#####################################################################################################################################################
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart3);
+
+function drawChart3() {
+  var data = new google.visualization.DataTable();
+  var charData = [];
+     data.addColumn('string',file_content[7][0]);
+     data.addColumn('number',file_content[7][3]);
+     var c=0;
+     //if (!charData[c]) a[c] = [];
+     var a=2984,b=5672;
+     for (var i = a; i < b; i++) {
+       for(var j=c; j<b-a;j++){
+         if (!charData[j]) charData[j] = [];
+       charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
+       charData[j][1] = file_content[i][3].replace(".", "");;
+       charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
+
+       c++;
+       console.log(c);break;
+        }
+      }
+    //  console.log(charData);
+  //
+  //   ['Year', 'Sales', 'Expenses'],
+  //   ['2004',  1000,      400],
+  //   ['2005',  1170,      460],
+  //   ['2006',  660,       1120],
+  //   ['2007',  1030,      540]
+  // ]);
+  data.addRows(charData);
+  console.log(data);
+  var options = {
+    title: 'Lastgang für Februar',
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    width: 1750, height: 600
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('retab2'));
+  function selectHandler() {
+var selectedItem = chart.getSelection()[0];
+if (selectedItem) {
+var value = data.getValue(selectedItem.row, selectedItem.column);
+alert('The user selected ' + value);
+}
+}
+
+// Listen for the 'select' event, and call my function selectHandler() when
+// the user selects something on the chart.
+google.visualization.events.addListener(chart, 'select', selectHandler);
+
+  chart.draw(data, options);
+}
+
+//#####################################################################################################################################################
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart4);
+
+function drawChart4() {
+  var data = new google.visualization.DataTable();
+  var charData = [];
+     data.addColumn('string',file_content[7][0]);
+     data.addColumn('number',file_content[7][3]);
+     var c=0;
+     //if (!charData[c]) a[c] = [];
+     var a=5672,b=8648;
+     for (var i = a; i < b; i++) {
+       for(var j=c; j<b-a;j++){
+         if (!charData[j]) charData[j] = [];
+       charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
+       charData[j][1] = file_content[i][3].replace(".", "");;
+       charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
+
+       c++;
+       console.log(c);break;
+        }
+      }
+    //  console.log(charData);
+  //
+  //   ['Year', 'Sales', 'Expenses'],
+  //   ['2004',  1000,      400],
+  //   ['2005',  1170,      460],
+  //   ['2006',  660,       1120],
+  //   ['2007',  1030,      540]
+  // ]);
+  data.addRows(charData);
+  console.log(data);
+  var options = {
+    title: 'Lastgang für März',
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    width: 1750, height: 600
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('retab3'));
+  function selectHandler() {
+var selectedItem = chart.getSelection()[0];
+if (selectedItem) {
+var value = data.getValue(selectedItem.row, selectedItem.column);
+alert('The user selected ' + value);
+}
+}
+
+// Listen for the 'select' event, and call my function selectHandler() when
+// the user selects something on the chart.
+google.visualization.events.addListener(chart, 'select', selectHandler);
+
+  chart.draw(data, options);
+}
+
+//######################################################################################################################################################
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart5);
+
+function drawChart5() {
+  var data = new google.visualization.DataTable();
+  var charData = [];
+     data.addColumn('string',file_content[7][0]);
+     data.addColumn('number',file_content[7][3]);
+     var c=0;
+     //if (!charData[c]) a[c] = [];
+     var a=8648,b=11528;
+     for (var i = a; i < b; i++) {
+       for(var j=c; j<b-a;j++){
+         if (!charData[j]) charData[j] = [];
+       charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
+       charData[j][1] = file_content[i][3].replace(".", "");;
+       charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
+
+       c++;
+       console.log(c);break;
+        }
+      }
+    //  console.log(charData);
+  //
+  //   ['Year', 'Sales', 'Expenses'],
+  //   ['2004',  1000,      400],
+  //   ['2005',  1170,      460],
+  //   ['2006',  660,       1120],
+  //   ['2007',  1030,      540]
+  // ]);
+  data.addRows(charData);
+  console.log(data);
+  var options = {
+    title: 'Lastgang für April',
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    width: 1750, height: 600
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('retab4'));
+  function selectHandler() {
+var selectedItem = chart.getSelection()[0];
+if (selectedItem) {
+var value = data.getValue(selectedItem.row, selectedItem.column);
+alert('The user selected ' + value);
+}
+}
+
+// Listen for the 'select' event, and call my function selectHandler() when
+// the user selects something on the chart.
+google.visualization.events.addListener(chart, 'select', selectHandler);
+
+  chart.draw(data, options);
+}
+
+//######################################################################################################################################################
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart6);
+
+function drawChart6() {
+  var data = new google.visualization.DataTable();
+  var charData = [];
+     data.addColumn('string',file_content[7][0]);
+     data.addColumn('number',file_content[7][3]);
+     var c=0;
+     //if (!charData[c]) a[c] = [];
+     var a=11528,b=14504;
+     for (var i = a; i < b; i++) {
+       for(var j=c; j<b-a;j++){
+         if (!charData[j]) charData[j] = [];
+       charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
+       charData[j][1] = file_content[i][3].replace(".", "");;
+       charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
+
+       c++;
+       console.log(c);break;
+        }
+      }
+    //  console.log(charData);
+  //
+  //   ['Year', 'Sales', 'Expenses'],
+  //   ['2004',  1000,      400],
+  //   ['2005',  1170,      460],
+  //   ['2006',  660,       1120],
+  //   ['2007',  1030,      540]
+  // ]);
+  data.addRows(charData);
+  console.log(data);
+  var options = {
+    title: 'Lastgang für Mai',
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    width: 1750, height: 600
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('retab5'));
+  function selectHandler() {
+var selectedItem = chart.getSelection()[0];
+if (selectedItem) {
+var value = data.getValue(selectedItem.row, selectedItem.column);
+alert('The user selected ' + value);
+}
+}
+
+// Listen for the 'select' event, and call my function selectHandler() when
+// the user selects something on the chart.
+google.visualization.events.addListener(chart, 'select', selectHandler);
+
+  chart.draw(data, options);
+}
+
+//######################################################################################################################################################
     </script>
 
 @endsection

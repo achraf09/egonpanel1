@@ -141,12 +141,12 @@ class ContractsController extends Controller
         $contract->records=$path;
         // $contract = Contract::create($request->all());
         $contract->save();
-        $file = fopen($storagePath.''.$path, "r");
-
-        while (($line = fgetcsv($file))!== FALSE){
-          dd('Here is the File being read!!!!!!!!!!!!!!!!!!!!');
-
-        }
+        // $file = fopen($storagePath.''.$path, "r");
+        //
+        // while (($line = fgetcsv($file))!== FALSE){
+        //   dd('Here is the File being read!!!!!!!!!!!!!!!!!!!!');
+        //
+        // }
 
 
         return redirect()->route('admin.contracts.index');
@@ -207,6 +207,7 @@ class ContractsController extends Controller
         $contract = Contract::findOrFail($id);
         //show the csv File content
         $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+
         $file = fopen($storagePath.''.$contract->records, "r");
         $file_contents = array();
         if (($file = fopen($storagePath.''.$contract->records, "r")) !== FALSE) {
@@ -218,11 +219,14 @@ class ContractsController extends Controller
 
           }
         }
-        // echo "<pre>";
-        // var_dump($file_contents);
-        // echo "</pre>";
+        //str_replace("Records/", "",$contract->records);
+        //echo "<pre>";
+        //$contract->records=Storage::url($contract->records);
+        //dd($contract->records);
+         //var_dump($file_contents);
+         //echo "</pre>";
       fclose($file);
-      
+
 
 
         return view('admin.contracts.show', compact(['contract','file_contents']));
@@ -307,9 +311,9 @@ class ContractsController extends Controller
     return DB::connection()->getpdo()->exec($query);
 
     }
-    public function download_file($filename)
+    public function downloadfile($filename)
     {
-        return redirect()->route('admin.contracts.index');
+        return response()->download(storage_path('app/' . $filename));
     }
 
 }

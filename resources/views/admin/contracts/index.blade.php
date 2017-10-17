@@ -13,8 +13,8 @@
     @can('contract_delete')
     <p>
         <ul class="list-inline">
-            <li><a href="{{ route('admin.contracts.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('quickadmin.qa_all')</a></li> |
-            <li><a href="{{ route('admin.contracts.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('quickadmin.qa_trash')</a></li>
+            <li><a href="{{ route('admin.contracts.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">Alles</a></li> |
+            <li><a href="{{ route('admin.contracts.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">Papierkorb</a></li>
         </ul>
     </p>
     @endcan

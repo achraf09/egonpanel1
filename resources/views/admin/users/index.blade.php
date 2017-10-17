@@ -5,16 +5,16 @@
     <h3 class="page-title">@lang('quickadmin.users.title')</h3>
     @can('user_create')
     <p>
-        <a href="{{ route('admin.users.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
+        <a href="{{ route('admin.users.create') }}" class="btn btn-success">Neuen Nutzer anlegen</a>
+
     </p>
     @endcan
 
     @can('user_delete')
     <p>
         <ul class="list-inline">
-            <li><a href="{{ route('admin.users.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('quickadmin.qa_all')</a></li> |
-            <li><a href="{{ route('admin.users.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('quickadmin.qa_trash')</a></li>
+            <li><a href="{{ route('admin.users.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">Alles</a></li> |
+            <li><a href="{{ route('admin.users.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">Papierkorb</a></li>
         </ul>
     </p>
     @endcan
@@ -53,7 +53,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('user_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.users.mass_destroy') }}'; @endif
@@ -74,7 +74,7 @@
                 {data: 'role.title', name: 'role.title'},
                 {data: 'profilphoto', name: 'profilphoto'},
                 {data: 'group.grp_name', name: 'group.grp_name'},
-                
+
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
             processAjaxTables();
