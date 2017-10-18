@@ -1,30 +1,30 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
+		'user-management' => [		'title' => 'Benutzerverwaltung',		'fields' => [		],	],
 		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'lastname' => 'Nachname',			'email' => 'Email',			'password' => 'Password',			'birthdate' => 'Geburtsdatum',			'address' => 'Addresse',			'role' => 'Role',			'remember-token' => 'Remember token',			'profilphoto' => 'Profilbild',			'group' => 'Gruppe',		],	],
+		'users' => [		'title' => 'Benutzer',		'fields' => [			'name' => 'Vorname',			'lastname' => 'Nachname',			'email' => 'Email',			'password' => 'Passwort',			'birthdate' => 'Geburtsdatum',			'address' => 'Addresse',			'role' => 'Role',			'remember-token' => 'Remember token',			'profilphoto' => 'Profilbild',			'group' => 'Gruppe',		],	],
 		'groups' => [		'title' => 'Gruppenverwaltung',		'fields' => [			'grp-name' => 'Gruppenname',			'admin' => 'Gruppenadmin',		],	],
-		'user-actions' => [		'title' => 'User actions',		'created_at' => 'Time',		'fields' => [			'user' => 'User',			'action' => 'Action',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
+		'user-actions' => [		'title' => 'Benutzeraktions',		'created_at' => 'Erstellungsdatum',		'fields' => [			'user' => 'Benutzer',			'action' => 'Aktion',			'action-model' => 'Aktion Modell',			'action-id' => 'Aktion id',		],	],
 		'contracts' => [		'title' => 'Verträge',		'fields' => [			'contractsname' => 'Vertragsname',			'end-date' => 'Das Ende des Vertrags',			'owner' => 'Vertraginhaber',		],	],
 	'qa_create' => 'Create',
-	'qa_save' => 'Save',
-	'qa_edit' => 'Edit',
-	'qa_restore' => 'Restore',
-	'qa_permadel' => 'Delete Permanently',
-	'qa_all' => 'All',
-	'qa_trash' => 'Trash',
-	'qa_view' => 'View',
+	'qa_save' => 'Speichern',
+	'qa_edit' => 'Bearbeiten',
+	'qa_restore' => 'Zurückstellen',
+	'qa_permadel' => 'Endgültig Löschen',
+	'qa_all' => 'Alles',
+	'qa_trash' => 'Papierkorb',
+	'qa_view' => 'Anzeigen',
 	'qa_update' => 'Update',
 	'qa_list' => 'List',
 	'qa_no_entries_in_table' => 'No entries in table',
 	'qa_custom_controller_index' => 'Custom controller index.',
 	'qa_logout' => 'Logout',
 	'qa_add_new' => 'Add new',
-	'qa_are_you_sure' => 'Are you sure?',
-	'qa_back_to_list' => 'Back to list',
+	'qa_are_you_sure' => 'Sind Sie sicher?',
+	'qa_back_to_list' => 'Zur List zurückkehren',
 	'qa_dashboard' => 'Dashboard',
-	'qa_delete' => 'Delete',
+	'qa_delete' => 'Löschen',
 	'qa_delete_selected' => 'Delete selected',
 	'qa_category' => 'Category',
 	'qa_categories' => 'Categories',
@@ -40,12 +40,12 @@ return [
 	'qa_title' => 'Title',
 	'qa_roles' => 'Roles',
 	'qa_role' => 'Role',
-	'qa_user_management' => 'User management',
-	'qa_users' => 'Users',
-	'qa_user' => 'User',
+	'qa_user_management' => 'Benutzerverwaltung',
+	'qa_users' => 'Benutzer',
+	'qa_user' => 'Benutzer',
 	'qa_name' => 'Name',
 	'qa_email' => 'Email',
-	'qa_password' => 'Password',
+	'qa_password' => 'Passwort',
 	'qa_remember_token' => 'Remember token',
 	'qa_permissions' => 'Permissions',
 	'qa_user_actions' => 'User actions',

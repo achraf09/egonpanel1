@@ -5,12 +5,12 @@
     <h3 class="page-title">@lang('quickadmin.user-actions.title')</h3>
     @can('user_action_create')
     <p>
-        
-        
+
+
     </p>
     @endcan
 
-    
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -21,27 +21,27 @@
             <table class="table table-bordered table-striped {{ count($user_actions) > 0 ? 'datatable' : '' }} ">
                 <thead>
                     <tr>
-                        
-                        <th>@lang('quickadmin.user-actions.created_at')</th>
+
+                        <th>Zeit</th>
                         <th>@lang('quickadmin.user-actions.fields.user')</th>
                         <th>@lang('quickadmin.user-actions.fields.action')</th>
                         <th>@lang('quickadmin.user-actions.fields.action-model')</th>
                         <th>@lang('quickadmin.user-actions.fields.action-id')</th>
-                        
+
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @if (count($user_actions) > 0)
                         @foreach ($user_actions as $user_action)
                             <tr data-entry-id="{{ $user_action->id }}">
-                                
+
                                 <td>{{ $user_action->created_at or '' }}</td>
-                                <td field-key='user'>{{ $user_action->user->name or '' }}</td>
+                                <td field-key='user'>{{ $user_action->user->name.' '.$user_action->user->lastname }}</td>
                                 <td field-key='action'>{{ $user_action->action }}</td>
                                 <td field-key='action_model'>{{ $user_action->action_model }}</td>
                                 <td field-key='action_id'>{{ $user_action->action_id }}</td>
-                                
+
                             </tr>
                         @endforeach
                     @else
@@ -55,8 +55,8 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
-        
+
     </script>
 @endsection
