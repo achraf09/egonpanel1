@@ -5,7 +5,7 @@ return [
 		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
 		'users' => [		'title' => 'Benutzer',		'fields' => [			'name' => 'Vorname',			'lastname' => 'Nachname',			'email' => 'Email',			'password' => 'Passwort',			'birthdate' => 'Geburtsdatum',			'address' => 'Addresse',			'role' => 'Role',			'remember-token' => 'Remember token',			'profilphoto' => 'Profilbild',			'group' => 'Gruppe',		],	],
 		'groups' => [		'title' => 'Gruppenverwaltung',		'fields' => [			'grp-name' => 'Gruppenname',			'admin' => 'Gruppenadmin',		],	],
-		'user-actions' => [		'title' => 'Benutzeraktions',		'created_at' => 'Erstellungsdatum',		'fields' => [			'user' => 'Benutzer',			'action' => 'Aktion',			'action-model' => 'Aktion Modell',			'action-id' => 'Aktion id',		],	],
+		'user-actions' => [		'title' => 'Benutzeraktionen',		'created_at' => 'Erstellungsdatum',		'fields' => [			'user' => 'Benutzer',			'action' => 'Aktion',			'action-model' => 'Aktion Modell',			'action-id' => 'Aktion id',		],	],
 		'contracts' => [		'title' => 'Verträge',		'fields' => [			'contractsname' => 'Vertragsname',			'end-date' => 'Das Ende des Vertrags',			'owner' => 'Vertraginhaber',		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Speichern',
@@ -25,7 +25,7 @@ return [
 	'qa_back_to_list' => 'Zur List zurückkehren',
 	'qa_dashboard' => 'Dashboard',
 	'qa_delete' => 'Löschen',
-	'qa_delete_selected' => 'Delete selected',
+	'qa_delete_selected' => 'Ausgewählte Elemente löschen',
 	'qa_category' => 'Category',
 	'qa_categories' => 'Categories',
 	'qa_sample_category' => 'Sample category',

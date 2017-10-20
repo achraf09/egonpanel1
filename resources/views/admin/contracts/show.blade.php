@@ -71,7 +71,7 @@
                           </td>
                         </tr>
                     </table>
-                    <a href="{{url('/contracts/'.$contract->id.'/downloadfile/'.str_replace("Records/", "",$contract->records))}}" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> {{$contract->records}} </a>
+                    <!-- <a href="{{url('/contracts/'.$contract->id.'/downloadfile/'.str_replace("Records/", "",$contract->records))}}" class="btn btn-large pull-right"><i class="icon-download-alt"> </i> {{$contract->records}} </a> -->
                 </div>
                 <!-- <div id="csvtable" class="col-md-6" style="overflow: auto; height:600px"><h1>Hier wird den Lastgang gezeigt</h1>
 
