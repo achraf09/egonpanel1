@@ -632,6 +632,78 @@ google.visualization.events.addListener(chart, 'select', selectHandler);
 }
 
 //######################################################################################################################################################
+
+
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart7);
+
+function drawChart7() {
+  var data = new google.visualization.DataTable();
+  var charData = [];
+     data.addColumn('string',file_content[7][0]);
+     data.addColumn('number',file_content[7][3]);
+     var c=0;
+     //if (!charData[c]) a[c] = [];
+     var a=14504,b=17384;
+     for (var i = a; i < b; i++) {
+       for(var j=c; j<b-a;j++){
+         if (!charData[j]) charData[j] = [];
+       charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
+       charData[j][1] = file_content[i][3].replace(".", "");;
+       charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
+
+       c++;
+       console.log(c);break;
+        }
+      }
+    //  console.log(charData);
+  //
+  //   ['Year', 'Sales', 'Expenses'],
+  //   ['2004',  1000,      400],
+  //   ['2005',  1170,      460],
+  //   ['2006',  660,       1120],
+  //   ['2007',  1030,      540]
+  // ]);
+  data.addRows(charData);
+  console.log(data);
+  var options = {
+    title: 'Lastgang für Juni',
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    width: 1750, height: 600
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('retab6'));
+  function selectHandler() {
+var selectedItem = chart.getSelection()[0];
+if (selectedItem) {
+var value = data.getValue(selectedItem.row, selectedItem.column);
+alert('The user selected ' + value);
+}
+}
+
+// Listen for the 'select' event, and call my function selectHandler() when
+// the user selects something on the chart.
+google.visualization.events.addListener(chart, 'select', selectHandler);
+
+  chart.draw(data, options);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//######################################################################################################################################################
     </script>
 
 @endsection
