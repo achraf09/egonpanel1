@@ -20,7 +20,7 @@ return [
 	'qa_no_entries_in_table' => 'No entries in table',
 	'qa_custom_controller_index' => 'Custom controller index.',
 	'qa_logout' => 'Logout',
-	'qa_add_new' => 'Add new',
+	'qa_add_new' => 'Neue Hinzufügen',
 	'qa_are_you_sure' => 'Sind Sie sicher?',
 	'qa_back_to_list' => 'Zur List zurückkehren',
 	'qa_dashboard' => 'Dashboard',

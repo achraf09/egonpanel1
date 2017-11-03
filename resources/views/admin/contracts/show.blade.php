@@ -243,7 +243,7 @@
                         </div>
                         <div id="retab6" class="tab-pane"><p>Section 6.</p>
                         </div>
-                        <div id="retab7" class="tab-pane"><p><?php echo $file_contents[8][3] ?> </p>
+                        <div id="retab7" class="tab-pane"><p> </p>
                         </div>
                         <div id="retab8" class="tab-pane"><p>Section 8.</p>
                         </div>
@@ -312,8 +312,8 @@ var d = new Date(date[2], date[0]-1, date[1], hours, minutes);
 
     document.getElementById("demo").innerHTML = d.toString();
 }
-    var file_content = <?php echo json_encode($file_contents) ?>;
-    console.log(file_content);
+    // var file_content = <?php echo json_encode($file_contents) ?>;
+    // console.log(file_content);
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 

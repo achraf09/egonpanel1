@@ -78,12 +78,30 @@
             @can('betriebspartner_access')
             <li class="{{ $request->segment(2) == 'partnercompanies' ? 'active' : '' }}">
                 <a href="{{ route('admin.companies.index') }}">
-                    <i class="fa fa-files-o"></i>
+                    <i class="fa fa-university"></i>
                     <span class="title">Vertriebspartner</span>
                 </a>
             </li>
             @endcan
+<!-- ############################################################################################# -->
+            @can('supplier_access')
+            <li class="{{ $request->segment(2) == 'partnercompanies' ? 'active' : '' }}">
+                <a href="{{ route('admin.suppliers.index') }}">
+                    <i class="fa fa-university"></i>
+                    <span class="title">Versorger</span>
+                </a>
+            </li>
+            @endcan
 
+            @can('betriebspartner_access')
+            <li class="{{ $request->segment(2) == 'partnercompanies' ? 'active' : '' }}">
+                <a href="{{ route('admin.companies.index') }}">
+                    <i class="fa fa-gift"></i>
+                    <span class="title">Angebote</span>
+                </a>
+            </li>
+            @endcan
+<!-- ################################################################################################# -->
 
 
 

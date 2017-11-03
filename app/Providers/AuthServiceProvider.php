@@ -122,6 +122,37 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('betriebspartner_show', function ($user) {
             return in_array($user->role_id, [1, 2, 3]);
         });
+        //Auth gates for:  (Suppliers) Versorger
+        Gate::define('supplier_access', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('supplier_create', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('supplier_delete', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('supplier_edit', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('supplier_view', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+
+        //Auth gates for:  Produkte der Versorger
+        Gate::define('produkte_access', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('produkte_create', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('produkte_delete', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('produkte_show', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+
 
     }
 }

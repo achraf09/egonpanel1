@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('records', 'Lastgang', ['class' => 'control-label']) !!}
-                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'required' => '', 'accept'=> '.csv']) !!}
+                    {!! Form::file('records', ['class' => 'form-control file', 'placeholder' => '', 'accept'=> '.csv']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('records'))
                         <p class="help-block">

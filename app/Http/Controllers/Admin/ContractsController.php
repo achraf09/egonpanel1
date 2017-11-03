@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 // include 'C:\xampp\php\PEAR\ChromePhp.php';
 //require_once 'Classes/PHPExcel/IOFactory.php';
 use App\Contract;
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreContractsRequest;
@@ -17,6 +17,7 @@ use Illuminate\Contracts\Logging\Log;
 use Illuminate\Contracts\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Input;
 class ContractsController extends Controller
 {
     /**
@@ -110,16 +111,34 @@ class ContractsController extends Controller
         if (! Gate::allows('contract_create')) {
             return abort(401);
         }
-        if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
-      //  var_dump($request->file('records')->getClientOriginalName());
-        $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.$request->file('records')->getClientOriginalName());
-        //var_dump($path->getFileExtension());
-        // Excel::load($path,function ($reader)
-        // {
-        //   $results = $reader->get();
-        //   var_dump($results);
-        // });
-        $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+        if (Request::hasFile('records')) {
+          if (Request::file('records')->isValid()) {
+            if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
+          //  var_dump($request->file('records')->getClientOriginalName());
+            $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.$request->file('records')->getClientOriginalName());
+            //var_dump($path->getFileExtension());
+            // Excel::load($path,function ($reader)
+            // {
+            //   $results = $reader->get();
+            //   var_dump($results);
+            // });
+            $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+          }
+        }
+        else {
+          $path="";
+        }
+
+      //   if(!Storage::disk('local')->exists('Records')) Storage::makeDirectory('Records');
+      // //  var_dump($request->file('records')->getClientOriginalName());
+      //   $path=$request->file('records')->storeAs('Records',$request->contractsname.'_'.$request->l_name.''.Carbon::now()->format('Y-m-d-H-i-s').''.$request->file('records')->getClientOriginalName());
+      //   //var_dump($path->getFileExtension());
+      //   // Excel::load($path,function ($reader)
+      //   // {
+      //   //   $results = $reader->get();
+      //   //   var_dump($results);
+      //   // });
+      //   $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
         //dd($path);
         $contract = new Contract();
         $contract->contractsname= $request->contractsname;
@@ -207,29 +226,37 @@ class ContractsController extends Controller
         $contract = Contract::findOrFail($id);
         //show the csv File content
         $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+        if (!($contract->records =="")) {
+          $file = fopen($storagePath.''.$contract->records, "r");
+          $file_contents = array();
+          if (($file = fopen($storagePath.''.$contract->records, "r")) !== FALSE) {
+            while (!feof($file)){
+              $line = fgetcsv($file,1000,';');
+              //$line = array_map("utf8_encode", $line);
+              array_push($file_contents, $line);
+              dd("I'm here");
 
-        $file = fopen($storagePath.''.$contract->records, "r");
-        $file_contents = array();
-        if (($file = fopen($storagePath.''.$contract->records, "r")) !== FALSE) {
-          while (!feof($file)){
-            $line = fgetcsv($file,1000,';');
-            //$line = array_map("utf8_encode", $line);
-            array_push($file_contents, $line);
-
-
+            }
           }
+          fclose($file);
+
+
+
+            return view('admin.contracts.show', compact(['contract','file_contents']));
         }
+        else {
+          //dd("I'm in else");
+          $file_contents = array();
+          return view('admin.contracts.show', compact(['contract','file_contents']));
+        }
+
         //str_replace("Records/", "",$contract->records);
         //echo "<pre>";
         //$contract->records=Storage::url($contract->records);
         //dd($contract->records);
          //var_dump($file_contents);
          //echo "</pre>";
-      fclose($file);
 
-
-
-        return view('admin.contracts.show', compact(['contract','file_contents']));
     }
 
 

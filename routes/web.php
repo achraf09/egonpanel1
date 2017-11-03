@@ -39,5 +39,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::delete('contracts_perma_del/{id}', ['uses' => 'Admin\ContractsController@perma_del', 'as' => 'contracts.perma_del']);
     Route::resource('companies', 'Admin\PartnerCompaniesController');
     //Route::post('companies_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+    Route::resource('suppliers', 'Admin\SuppliersController');
+    Route::post('suppliers_mass_destroy', ['uses' => 'Admin\SuppliersController@massDestroy', 'as' => 'suppliers.mass_destroy']);
+    Route::post('suppliers_restore/{id}', ['uses' => 'Admin\SuppliersController@restore', 'as' => 'suppliers.restore']);
+    Route::delete('suppliers_perma_del/{id}', ['uses' => 'Admin\SuppliersController@perma_del', 'as' => 'suppliers.perma_del']);
+
 
 });
