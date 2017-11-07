@@ -15,6 +15,13 @@ class CreateContactPeopleTable extends Migration
     {
         Schema::create('contact_people', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('vorname');
+            $table->string('nachname');
+            $table->string('telephone');
+            $table->string('position');
+            $table->string('email');
+            $table->string('remember_token')->nullable();
+
             $table->timestamps();
         });
     }
