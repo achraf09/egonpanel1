@@ -29,13 +29,15 @@ class SuppliersController extends Controller
         if (request()->ajax()) {
             $query = Supplier::query();
 
+
           //  $query = Contract::query();
-            if (\Auth::getUser()->id==1) {
-              $query->with("admin");
+             if (\Auth::getUser()->id==1) {
+              //  $q->get();
+              $q = Supplier::all();
             }
-            else {
-              $query->with("admin")->where('admin_id',$user->id)->get();
-            }
+            // else {
+            //   $query->with("admin")->where('admin_id',$user->id)->get();
+            // }
           //  $query->with("admin");
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
@@ -43,10 +45,10 @@ class SuppliersController extends Controller
         if (! Gate::allows('supplier_delete')) {
             return abort(401);
         }
-                $query->onlyTrashed();
+                $q->onlyTrashed();
                 $template = 'restoreTemplate';
             }
-            $table = Datatables::of($query);
+            $table = Datatables::of($q)->make();
 
             $table->setRowAttr([
                 'data-entry-id' => '{{$id}}',
@@ -60,10 +62,10 @@ class SuppliersController extends Controller
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
             $table->editColumn('supplier_name', function ($row) {
-                return $row->grp_name ? $row->grp_name : '';
+                return $row->Name ? $row->Name : '';
             });
-            $table->editColumn('admin.name', function ($row) {
-                return $row->admin ? $row->admin->name."\t".$row->admin->lastname : '';
+            $table->editColumn('anschrift', function ($row) {
+                return $row->anschrift ? $row->anschrift : '';
             });
             // $table->editColumn('admin.lastname', function ($row) {
             //     return $row->admin ? $row->admin->lastname : '';

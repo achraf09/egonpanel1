@@ -234,7 +234,7 @@ class ContractsController extends Controller
               $line = fgetcsv($file,1000,';');
               //$line = array_map("utf8_encode", $line);
               array_push($file_contents, $line);
-              dd("I'm here");
+              //dd("I'm here");
 
             }
           }

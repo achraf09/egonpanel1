@@ -15,7 +15,7 @@ class Supplier extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['supplier_name', 'admin_id'];
+    protected $fillable = ['Name', 'anschrift'];
 
     public static function boot()
     {
