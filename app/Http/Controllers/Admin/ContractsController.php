@@ -146,7 +146,7 @@ class ContractsController extends Controller
         $contract->f_name= $request->f_name;
         $contract->l_name=$request->l_name;
         $contract->addresse=$request->addresse;
-        $contract->zihlerpunktnummer=$request->zihlerpunktnummer;
+        $contract->zaehlerpunktnummer=$request->zaehlerpunktnummer;
         $contract->telephone=$request->telephone;
         $contract->mobile=$request->mobile;
         $contract->fax=$request->fax;

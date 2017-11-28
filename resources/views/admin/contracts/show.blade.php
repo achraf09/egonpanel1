@@ -243,7 +243,7 @@
                         </div>
                         <div id="retab6" class="tab-pane"><p>Section 6.</p>
                         </div>
-                        <div id="retab7" class="tab-pane"><p> </p>
+                        <div id="retab7" class="tab-pane"><p>{{ $file_contents[8][0] }} </p>
                         </div>
                         <div id="retab8" class="tab-pane"><p>Section 8.</p>
                         </div>
@@ -312,7 +312,7 @@ var d = new Date(date[2], date[0]-1, date[1], hours, minutes);
 
     document.getElementById("demo").innerHTML = d.toString();
 }
-    // var file_content = <?php echo json_encode($file_contents) ?>;
+     var file_contents = <?php echo json_encode($file_contents) ?>;
     // console.log(file_content);
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -353,18 +353,19 @@ var d = new Date(date[2], date[0]-1, date[1], hours, minutes);
       google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
+        var file_contents = <?php echo json_encode($file_contents) ?>;
         var data = new google.visualization.DataTable();
         var charData = [];
-           data.addColumn('string',file_content[7][0]);
-           data.addColumn('number',file_content[7][3]);
+           data.addColumn('string',file_contents[7][0]);
+           data.addColumn('number',file_contents[7][3]);
            var c=0;
            //if (!charData[c]) a[c] = [];
            var a=8,b=2984;
            for (var i = a; i < b; i++) {
              for(var j=c; j<b-a;j++){
                if (!charData[j]) charData[j] = [];
-             charData[j][0] = file_content[i][0].toString().concat(" ".concat(file_content[i][2].toString()));
-             charData[j][1] = file_content[i][3].replace(".", "");;
+             charData[j][0] = file_contents[i][0].toString().concat(" ".concat(file_contents[i][2].toString()));
+             charData[j][1] = file_contents[i][3].replace(".", "");;
              charData[j][1] = parseFloat(charData[j][1].replace(",", "."));
 
              c++;
@@ -409,6 +410,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart3);
 
 function drawChart3() {
+  var file_content = <?php echo json_encode($file_contents) ?>;
   var data = new google.visualization.DataTable();
   var charData = [];
      data.addColumn('string',file_content[7][0]);
@@ -466,6 +468,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart4);
 
 function drawChart4() {
+  var file_content = <?php echo json_encode($file_contents) ?>;
   var data = new google.visualization.DataTable();
   var charData = [];
      data.addColumn('string',file_content[7][0]);
@@ -523,6 +526,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart5);
 
 function drawChart5() {
+  var file_content = <?php echo json_encode($file_contents) ?>;
   var data = new google.visualization.DataTable();
   var charData = [];
      data.addColumn('string',file_content[7][0]);
@@ -580,6 +584,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart6);
 
 function drawChart6() {
+  var file_content = <?php echo json_encode($file_contents) ?>;
   var data = new google.visualization.DataTable();
   var charData = [];
      data.addColumn('string',file_content[7][0]);
@@ -639,6 +644,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart7);
 
 function drawChart7() {
+  var file_content = <?php echo json_encode($file_contents) ?>;
   var data = new google.visualization.DataTable();
   var charData = [];
      data.addColumn('string',file_content[7][0]);

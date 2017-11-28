@@ -31,10 +31,10 @@ class SuppliersController extends Controller
 
 
           //  $query = Contract::query();
-             if (\Auth::getUser()->id==1) {
+            //  if (\Auth::getUser()->id==1) {
               //  $q->get();
-              $q = Supplier::all();
-            }
+              $q = Supplier::select(['name','anschrift']);
+            // }
             // else {
             //   $query->with("admin")->where('admin_id',$user->id)->get();
             // }
@@ -61,7 +61,7 @@ class SuppliersController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('supplier_name', function ($row) {
+            $table->editColumn('Name', function ($row) {
                 return $row->Name ? $row->Name : '';
             });
             $table->editColumn('anschrift', function ($row) {

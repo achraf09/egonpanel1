@@ -19,7 +19,10 @@ class Create1505226407ContractsTable extends Migration
                 $table->string('salutation')->nullable();
                 $table->string('f_name')->nullable();
                 $table->string('l_name')->nullable();
-                $table->integer('zihlerpunktnummer')->nullable();
+                $table->string('zaehlerpunktnummer')->nullable();
+                $table->string('addresse')->nullable();
+                $table->string('records')->nullable();
+
                 $table->string('telephone',14)->nullable();
                 $table->string('mobile',14)->nullable();
                 $table->string('fax',14)->nullable();

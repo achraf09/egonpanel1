@@ -36,6 +36,9 @@ class CreateProductsTable extends Migration
             $table->double('sum_work_nt',9,3)->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['deleted_at']);
         });
     }
 

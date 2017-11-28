@@ -18,6 +18,9 @@ class CreateSuppliersTable extends Migration
             $table->string('Name');
             $table->string('anschrift');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['deleted_at']);
         });
     }
 
