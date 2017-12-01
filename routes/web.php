@@ -43,6 +43,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('suppliers_mass_destroy', ['uses' => 'Admin\SuppliersController@massDestroy', 'as' => 'suppliers.mass_destroy']);
     Route::post('suppliers_restore/{id}', ['uses' => 'Admin\SuppliersController@restore', 'as' => 'suppliers.restore']);
     Route::delete('suppliers_perma_del/{id}', ['uses' => 'Admin\SuppliersController@perma_del', 'as' => 'suppliers.perma_del']);
+    //
+    Route::resource('contactpersons', 'Admin\ContactPersonController');
+    Route::post('contactpersons_mass_destroy', ['uses' => 'Admin\ContactPersonController@massDestroy', 'as' => 'contactpersons.mass_destroy']);
+    Route::post('contactpersons_restore/{id}', ['uses' => 'Admin\ContactPersonController@restore', 'as' => 'contactpersons.restore']);
+    Route::delete('contactpersons_perma_del/{id}', ['uses' => 'Admin\ContactPersonController@perma_del', 'as' => 'contactpersons.perma_del']);
 
 
 });

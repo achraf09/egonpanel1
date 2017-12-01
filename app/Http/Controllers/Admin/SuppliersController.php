@@ -6,8 +6,8 @@ use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreGroupsRequest;
-use App\Http\Requests\Admin\UpdateGroupsRequest;
+use App\Http\Requests\Admin\StoreSuppliersRequest;
+use App\Http\Requests\Admin\UpdateSuppliersRequest;
 use Yajra\Datatables\Datatables;
 use DB;
 class SuppliersController extends Controller
@@ -31,10 +31,10 @@ class SuppliersController extends Controller
 
 
           //  $query = Contract::query();
-            //  if (\Auth::getUser()->id==1) {
+              if (\Auth::getUser()->role_id==1) {
               //  $q->get();
               $q = Supplier::select(['name','anschrift']);
-            // }
+             }
             // else {
             //   $query->with("admin")->where('admin_id',$user->id)->get();
             // }
@@ -45,10 +45,10 @@ class SuppliersController extends Controller
         if (! Gate::allows('supplier_delete')) {
             return abort(401);
         }
-                $q->onlyTrashed();
+                $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
-            $table = Datatables::of($q)->make();
+            $table = Datatables::of($query);
 
             $table->setRowAttr([
                 'data-entry-id' => '{{$id}}',
@@ -135,19 +135,19 @@ class SuppliersController extends Controller
     }
 
     /**
-     * Update Group in storage.
+     * Update Supplier in storage.
      *
-     * @param  \App\Http\Requests\UpdateGroupsRequest  $request
+     * @param  \App\Http\Requests\UpdateSuppliersRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateGroupsRequest $request, $id)
+    public function update(UpdateSuppliersRequest $request, $id)
     {
         if (! Gate::allows('supplier_edit')) {
             return abort(401);
         }
-        $group = Supplier::findOrFail($id);
-        $group->update($request->all());
+        $supplier = Supplier::findOrFail($id);
+        $supplier->update($request->all());
 
 
 
@@ -156,7 +156,7 @@ class SuppliersController extends Controller
 
 
     /**
-     * Display Group.
+     * Display Supplier.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -167,43 +167,44 @@ class SuppliersController extends Controller
             return abort(401);
         }
 
-        $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$users = \App\User::where('group_id', $id)->get();
+        //$admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $contact_persons = \App\ContactPerson::where('suppliers_id', $id)->get();
 
-        $group = Group::findOrFail($id);
+        $supplier = Supplier::findOrFail($id);
 
-        return view('admin.groups.show', compact('group', 'users'));
+        return view('admin.suppliers.show', compact('supplier', 'contact_persons'));
     }
 
 
     /**
-     * Remove Group from storage.
+     * Remove Supplier from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (! Gate::allows('group_delete')) {
+        if (! Gate::allows('supplier_delete')) {
             return abort(401);
         }
-        $group = Group::findOrFail($id);
-        $group->delete();
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
 
-        return redirect()->route('admin.groups.index');
+        return redirect()->route('admin.suppliers.index');
     }
 
     /**
-     * Delete all selected Group at once.
+     * Delete all selected Suppliers at once.
      *
      * @param Request $request
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('group_delete')) {
+        if (! Gate::allows('supplier_delete')) {
             return abort(401);
         }
         if ($request->input('ids')) {
-            $entries = Group::whereIn('id', $request->input('ids'))->get();
+            $entries = Supplier::whereIn('id', $request->input('ids'))->get();
 
             foreach ($entries as $entry) {
                 $entry->delete();
@@ -213,36 +214,36 @@ class SuppliersController extends Controller
 
 
     /**
-     * Restore Group from storage.
+     * Restore Supplier from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function restore($id)
     {
-        if (! Gate::allows('group_delete')) {
+        if (! Gate::allows('supplier_delete')) {
             return abort(401);
         }
-        $group = Group::onlyTrashed()->findOrFail($id);
-        $group->restore();
+        $supplier = Supplier::onlyTrashed()->findOrFail($id);
+        $supplier->restore();
 
-        return redirect()->route('admin.groups.index');
+        return redirect()->route('admin.suppliers.index');
     }
 
     /**
-     * Permanently delete Group from storage.
+     * Permanently delete Supllier from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function perma_del($id)
     {
-        if (! Gate::allows('group_delete')) {
+        if (! Gate::allows('supplier_delete')) {
             return abort(401);
         }
-        $group = Group::onlyTrashed()->findOrFail($id);
-        $group->forceDelete();
+        $supplier = Supplier::onlyTrashed()->findOrFail($id);
+        $supplier->forceDelete();
 
-        return redirect()->route('admin.groups.index');
+        return redirect()->route('admin.suppliers.index');
     }
 }

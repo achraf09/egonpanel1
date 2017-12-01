@@ -36,7 +36,7 @@ class ContractsController extends Controller
 
         if (request()->ajax()) {
             $query = Contract::query();
-            if (\Auth::getUser()->id==1 || \Auth::getUser()->id==2) {
+            if (\Auth::getUser()->role_id==1 || \Auth::getUser()->role_id==2) {
               $query->with("owner");
             }
             else {
