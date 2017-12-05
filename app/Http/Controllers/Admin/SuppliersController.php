@@ -84,16 +84,16 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('supplier_access_create')) {
+        if (! Gate::allows('supplier_create')) {
             return abort(401);
         }
-        $admins = \App\User::select(
-            DB::raw("CONCAT(name,' ',lastname) AS name"),'id')
-            ->where('role_id',2)
-            ->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        // $admins = \App\User::select(
+        //     DB::raw("CONCAT(name,' ',lastname) AS name"),'id')
+        //     ->where('role_id',2)
+        //     ->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         // $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
-        return view('admin.suppliers.create', compact('admins'));
+        return view('admin.suppliers.create');
     }
 
     /**
@@ -102,9 +102,9 @@ class SuppliersController extends Controller
      * @param  \App\Http\Requests\StoreGroupsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreGroupsRequest $request)
+    public function store(StoreSuppliersRequest $request)
     {
-        if (! Gate::allows('suppliers_create')) {
+        if (! Gate::allows('supplier_create')) {
             return abort(401);
         }
         $group = Supplier::create($request->all());
