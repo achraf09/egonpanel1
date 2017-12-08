@@ -23,7 +23,10 @@ class CreateContactPeopleTable extends Migration
             $table->string('remember_token')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
+            $table->index(['deleted_at']);
         });
+        
     }
 
     /**

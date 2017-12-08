@@ -48,6 +48,12 @@ class ContactPersonController extends Controller
     public function store(Request $request)
     {
         //
+        if (! Gate::allows('contract_create')) {
+            return abort(401);
+        }
+        $contactPerson = ContactPerson::create($request->all());
+
+
     }
 
     /**
