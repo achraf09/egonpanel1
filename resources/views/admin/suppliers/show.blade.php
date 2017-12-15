@@ -40,8 +40,9 @@
         </div>
         <div class="modal-body">
 
-          <form class="form-horizontal" id="userForm"  method="POST" action="{{ route('admin.contactpersons.store') }}">
-
+          <form class="form-horizontal" id="userForm">
+            {{ csrf_field() }}
+            <p class="statusMsg"></p>
               <div class="form-group row">
                 <div class="col-sm-offset-2 col-sm-10">
                   <label for="vorname" class="col-sm-2 col-form-label">Vorname*:      </label>
@@ -206,70 +207,68 @@
             <a href="{{ route('admin.suppliers.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
-@stop
-@section('javascript')
-    <script>
-    var BASE_URL = 'egonpanel/public/';
-
-function getUrl(url) {
-    return BASE_URL.concat(url);
-}
-
-console.log(getUrl("suppliers/{id}"));
-    function submitContactForm(){
-      var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-      var vorname = $('#vorname').val();
-      var nachname = $('#nachname').val();
-      var email = $('#email').val();
-      var position = $('#position').val();
-      var telephone = $('#telephone').val();
-      if(vorname.trim() == '' ){
-        alert('Please enter your name.');
-        $('#vorname').focus();
-        return false;
-      }else if(nachname.trim() == '' ){
-        alert('Please enter your name.');
-        $('#nachname').focus();
-        return false;
-      }else if(email.trim() == '' ){
-        alert('Please enter your email.');
-        $('#email').focus();
-        return false;
-      }else if(email.trim() != '' && !reg.test(email)){
-        alert('Please enter valid email.');
-        $('#email').focus();
-        return false;
-      }else if(position.trim() == '' ){
-        alert('Please enter the Position.');
-        $('#position').focus();
-        return false;
-      }else if(telephone.trim() == '' ){
-        alert('Please enter the phone nummber.');
-        $('#telephone').focus();
-        return false;
-      }else {
-        $.ajax({
-          type:'POST',
-          url:'/egonpanel/public/admin/contactpersons',
-          data:'contactFrmSubmit=1&name='+name+'&email='+email+'&message='+message,
-          beforeSend: function () {
-            $('.submitBtn').attr("disabled","disabled");
-            $('.modal-body').css('opacity', '.5');
-          },
-          success:function(msg){
-            if(msg == 'ok'){
-              $('#inputName').val('');
-              $('#inputEmail').val('');
-              $('#inputMessage').val('');
-              $('.statusMsg').html('<span style="color:green;">Thanks for contacting us, we\'ll get back to you soon.</p>');
-            }else{
-              $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
-            }
-            $('.submitBtn').removeAttr("disabled");
-            $('.modal-body').css('opacity', '');
+    @section('javascript')
+        <script>
+        function submitContactForm(){
+          var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+          var vorname = $('#vorname').val();
+          var nachname = $('#nachname').val();
+          var email = $('#email').val();
+          var position = $('#position').val();
+          var telephone = $('#telephone').val();
+          var supp_id = <?php echo json_encode($supplier->id) ?>;
+          console.log(supp_id);
+          if(vorname.trim() == '' ){
+            alert('Bitte die Vorname eingeben.');
+            $('#vorname').focus();
+            return false;
+          }else if(nachname.trim() == '' ){
+            alert('Bitte die Nachname eingeben.');
+            $('#nachname').focus();
+            return false;
+          }else if(email.trim() == '' ){
+            alert('Bitte die Email eingeben .');
+            $('#email').focus();
+            return false;
+          }else if(email.trim() != '' && !reg.test(email)){
+            alert('Bitte eine gültige Email-Adresse eingeben.');
+            $('#email').focus();
+            return false;
+          }else if(position.trim() == '' ){
+            alert('Bitte die Position eingeben.');
+            $('#position').focus();
+            return false;
+          }else if(telephone.trim() == '' ){
+            alert('Bitte die Telefonnummer eingeben.');
+            $('#telephone').focus();
+            return false;
+          }else {
+            $.ajax({
+              type:'POST',
+              url:"{{ route('admin.contactpersons.store') }}",
+              data:{'vorname':vorname,'nachname': nachname,'email':email,'position':position, 'telephone' : telephone, 'suppliers_id': supp_id},
+              _token: '{{ csrf_token() }}',
+              // beforeSend: function () {
+              //   $('.submitBtn').attr("disabled","disabled");
+              //   $('.modal-body').css('opacity', '.5');
+              // },
+              success:function(msg){
+                if(msg == 'ok'){
+                  $('#vorname').val('');
+                  $('#nachname').val('');
+                  $('#email').val('');
+                  $('#position').val('');
+                  $('#telephone').val('');
+                  $('.statusMsg').html('<span style="color:green;">Den Ansprechpartner ist eingestellt</p>');
+                }else{
+                  $('.statusMsg').html('<span style="color:red;">Fehler!!</span>');
+                }
+                $('.submitBtn').removeAttr("disabled");
+                $('.modal-body').css('opacity', '');
+              }
+            });
           }
-        });
-      }
-    }
-    </script>
-@endsection
+        }
+        </script>
+    @endsection
+@stop

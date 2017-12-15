@@ -23,7 +23,7 @@ class ContactPersonController extends Controller
      */
     public function index()
     {
-      if (! Gate::allows('contract_access')) {
+      if (! Gate::allows('contactpersons_access')) {
           return abort(401);
       }
         //
@@ -37,6 +37,9 @@ class ContactPersonController extends Controller
     public function create()
     {
         //
+        if (! Gate::allows('contactpersons_create')) {
+            return abort(401);
+        }
     }
 
     /**
@@ -48,10 +51,14 @@ class ContactPersonController extends Controller
     public function store(Request $request)
     {
         //
-        if (! Gate::allows('contract_create')) {
+        if (! Gate::allows('contactpersons_create')) {
             return abort(401);
         }
-        $contactPerson = ContactPerson::create($request->all());
+        dd($request->all());
+        ContactPerson::create($request->all());
+        //var_dump($contactPerson);
+
+
 
 
     }
