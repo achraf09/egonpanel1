@@ -210,6 +210,15 @@
     @section('javascript')
         <script>
         function submitContactForm(){
+          var CSRF_HEADER = 'X-CSRF-Token';
+
+          var setCSRFToken = function(securityToken) {
+              jQuery.ajaxPrefilter(function(options, _, xhr) {
+                  if ( !xhr.crossDomain )
+                      xhr.setRequestHeader(CSRF_HEADER, securityToken);
+              });
+          };
+          setCSRFToken($('meta[name="csrf-token"]').attr('content'));
           var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
           var vorname = $('#vorname').val();
           var nachname = $('#nachname').val();
@@ -247,12 +256,12 @@
               type:'POST',
               url:"{{ route('admin.contactpersons.store') }}",
               data:{'vorname':vorname,'nachname': nachname,'email':email,'position':position, 'telephone' : telephone, 'suppliers_id': supp_id},
-              _token: '{{ csrf_token() }}',
+              // _token: '{{ csrf_token() }}',
               // beforeSend: function () {
               //   $('.submitBtn').attr("disabled","disabled");
               //   $('.modal-body').css('opacity', '.5');
               // },
-              success:function(msg){
+              success:function(data){
                 if(msg == 'ok'){
                   $('#vorname').val('');
                   $('#nachname').val('');

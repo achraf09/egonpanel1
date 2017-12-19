@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\ContactPerson;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
@@ -55,8 +56,8 @@ class ContactPersonController extends Controller
             return abort(401);
         }
         dd($request->all());
-        ContactPerson::create($request->all());
-        //var_dump($contactPerson);
+        $contactPerson = ContactPerson::create($request->all());
+        var_dump($contactPerson);
 
 
 
