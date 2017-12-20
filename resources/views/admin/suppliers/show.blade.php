@@ -254,24 +254,26 @@
           }else {
             $.ajax({
               type:'POST',
-              url:"{{ route('admin.contactpersons.store') }}",
+              url: '../contactpersons',//"{{ route('admin.contactpersons.store') }}",
               data:{'vorname':vorname,'nachname': nachname,'email':email,'position':position, 'telephone' : telephone, 'suppliers_id': supp_id},
+              dataType: 'json',
               // _token: '{{ csrf_token() }}',
               // beforeSend: function () {
               //   $('.submitBtn').attr("disabled","disabled");
               //   $('.modal-body').css('opacity', '.5');
               // },
-              success:function(data){
-                if(msg == 'ok'){
-                  $('#vorname').val('');
-                  $('#nachname').val('');
-                  $('#email').val('');
-                  $('#position').val('');
-                  $('#telephone').val('');
-                  $('.statusMsg').html('<span style="color:green;">Den Ansprechpartner ist eingestellt</p>');
-                }else{
-                  $('.statusMsg').html('<span style="color:red;">Fehler!!</span>');
-                }
+              success: function(msg){
+                console.log(vorname+nachname+email+position+telephone+supp_id);
+                // if(msg == 'ok'){
+                //   $('#vorname').val('');
+                //   $('#nachname').val('');
+                //   $('#email').val('');
+                //   $('#position').val('');
+                //   $('#telephone').val('');
+                //   $('.statusMsg').html('<span style="color:green;">Den Ansprechpartner ist eingestellt</p>');
+                // }else{
+                //   $('.statusMsg').html('<span style="color:red;">Fehler!!</span>');
+                // }
                 $('.submitBtn').removeAttr("disabled");
                 $('.modal-body').css('opacity', '');
               }

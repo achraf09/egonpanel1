@@ -41,6 +41,7 @@ class ContactPersonController extends Controller
         if (! Gate::allows('contactpersons_create')) {
             return abort(401);
         }
+        dd("heyy");
     }
 
     /**
