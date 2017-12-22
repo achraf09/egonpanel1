@@ -13,7 +13,7 @@ use Illuminate\Contracts\Logging\Log;
 use Illuminate\Contracts\Filesystem;
 use Illuminate\Support\Facades\Storage;
 
-
+use Illuminate\Support\Facades\Input;
 
 class ContactPersonController extends Controller
 {
@@ -56,9 +56,11 @@ class ContactPersonController extends Controller
         if (! Gate::allows('contactpersons_create')) {
             return abort(401);
         }
-        dd($request->all());
+        //dd($request->all());
+        $ContactPerson = new ContactPerson();
         $contactPerson = ContactPerson::create($request->all());
-        var_dump($contactPerson);
+        return redirect()->route('admin.suppliers.show',['supplier' => $contactPerson->suppliers_id]);
+        //var_dump($contactPerson);
 
 
 

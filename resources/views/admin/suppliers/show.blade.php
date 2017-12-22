@@ -24,7 +24,7 @@
                 </div>
 
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
+    Ansprechpartner hinzufügen
     </button>
             </div>
 
@@ -40,7 +40,7 @@
         </div>
         <div class="modal-body">
 
-          <form class="form-horizontal" id="userForm">
+          <form class="form-horizontal" id="userForm" method="post" action="{{ route('admin.contactpersons.store') }}">
             {{ csrf_field() }}
             <p class="statusMsg"></p>
               <div class="form-group row">
@@ -88,10 +88,11 @@
                   </div>
                   </div>
                   </div>
-
+                  <input type="hidden" name="suppliers_id" value="{{ $supplier->id }}">
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default submitBtn" onclick="submitContactForm()">Speichern Ansprechpartner</button>
+
+                  <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right ">Submit</button><!-- <button type="button" class="btn btn-default submitBtn" onclick="submitContactForm()">Speichern Ansprechpartner</button> -->
                   </div>
                 </form>
                 </div>
@@ -256,14 +257,14 @@
               type:'POST',
               url: '../contactpersons',//"{{ route('admin.contactpersons.store') }}",
               data:{'vorname':vorname,'nachname': nachname,'email':email,'position':position, 'telephone' : telephone, 'suppliers_id': supp_id},
-              dataType: 'json',
+              //dataType: 'json',
               // _token: '{{ csrf_token() }}',
               // beforeSend: function () {
               //   $('.submitBtn').attr("disabled","disabled");
               //   $('.modal-body').css('opacity', '.5');
               // },
-              success: function(msg){
-                console.log(vorname+nachname+email+position+telephone+supp_id);
+              success: function(data){
+                console.log(data);
                 // if(msg == 'ok'){
                 //   $('#vorname').val('');
                 //   $('#nachname').val('');
