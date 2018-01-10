@@ -73,9 +73,19 @@ class ContactPersonController extends Controller
      * @param  \App\ContactPerson  $contactPerson
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactPerson $contactPerson)
+    public function show($id)
     {
         //
+        if (! Gate::allows('contactpersons_view')) {
+            return abort(401);
+        }
+
+        // $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        // $groups = \App\Group::get()->pluck('grp_name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$user_actions = \App\UserAction::where('user_id', $id)->get();$groups = \App\Group::where('admin_id', $id)->get();$contracts = \App\Contract::where('owner_id', $id)->get();
+        $user = ContactPerson::findOrFail($id);
+        $supplier = \App\Supplier::where('id',$user->suppliers_id)->get()->pluck('Name');
+        //var_dump($supplier[0]);
+        return view('admin.contactpersons.show', compact('user', 'supplier'));
     }
 
     /**
