@@ -127,7 +127,7 @@ class SuppliersController extends Controller
             return abort(401);
         }
 
-        $admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        //$admins = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $supplier = Supplier::findOrFail($id);
 
@@ -151,7 +151,7 @@ class SuppliersController extends Controller
 
 
 
-        return redirect()->route('admin.supplier.index');
+        return redirect()->route('admin.suppliers.index');
     }
 
 

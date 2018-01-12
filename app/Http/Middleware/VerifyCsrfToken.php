@@ -13,6 +13,6 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
-        'localhost/egonpanel/public/admin/contactpersons',
+        // 'localhost/egonpanel/public/admin/contactpersons',
     ];
 }
