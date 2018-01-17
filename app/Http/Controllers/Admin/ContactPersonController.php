@@ -12,7 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Contracts\Filesystem;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Requests\Admin\StoreContactPersonRequest;
+use App\Http\Requests\Admin\UpdateContactPersonRequest;
 use Illuminate\Support\Facades\Input;
 
 class ContactPersonController extends Controller
@@ -94,9 +95,15 @@ class ContactPersonController extends Controller
      * @param  \App\ContactPerson  $contactPerson
      * @return \Illuminate\Http\Response
      */
-    public function edit(ContactPerson $contactPerson)
+    public function edit($id)
     {
         //
+        if (! Gate::allows('contactpersons_edit')) {
+            return abort(401);
+        }
+        $contactperson = ContactPerson::findOrFail($id);
+
+        return view('admin.contactpersons.edit', compact('contactperson'));
     }
 
     /**
@@ -106,9 +113,18 @@ class ContactPersonController extends Controller
      * @param  \App\ContactPerson  $contactPerson
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ContactPerson $contactPerson)
+    public function update(UpdateContactPersonRequest $request, $id)
     {
         //
+        if (! Gate::allows('contactpersons_edit')) {
+            return abort(401);
+        }
+        $contactperson = ContactPerson::findOrFail($id);
+        $contactperson->update($request->all());
+
+
+
+        return redirect()->route('admin.suppliers.index');
     }
 
     /**
@@ -117,8 +133,15 @@ class ContactPersonController extends Controller
      * @param  \App\ContactPerson  $contactPerson
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactPerson $contactPerson)
+    public function destroy($id)
     {
         //
+        if (! Gate::allows('contactpersons_delete')) {
+            return abort(401);
+        }
+        $contactperson = ContactPerson::findOrFail($id);
+        $contactperson->delete();
+
+        return redirect()->route('admin.suppliers.index');
     }
 }
