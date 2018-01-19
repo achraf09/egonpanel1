@@ -23,68 +23,11 @@
                         </p>
                     @endif
                 </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+
             </div>
 
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ansprechpartner hinzufügen</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
 
-          <form class="form-horizontal" id="userForm" style="display:none" method="post">
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <label for="vorname" class="col-sm-2 control-label">Vorname*:</label>
-                  <input type="text" name="vorname" required placeholder="Vorname" class="form-control">
-                </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
-                  <label for="nachname" class="col-sm-2 control-label">Nachname*:</label>
-                  <input type="text" name="nachname" class="form-control" placeholder="Nachname" required>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                  <label for="telephone" class="col-sm-2 control-label">Telehone:</label>
-                  <input type="text" class="form-control" name="telephone" placeholder="Telephone" required>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                  <label for="position" class="col-sm-2 control-label">Position</label>
-                  <input type="text" class="form-control" name="position" placeholder="Position in der Firma" required>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                  <label for="email" class="col-sm-2 control-label">E-Mail:</label>
-                  <input type="text" class="form-control" name="email" placeholder="email" required>
-                  </div>
-                  </div>
-
-
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-default">Speichern Ansprechpartner</button>
-                  </div>
-                </form>
-                </div>
-
-
-
-
-              </div>
-</div>
-</div>
               </div>
             <!-- <div class="row"> -->
                 <!-- <div class="col-xs-12 form-group"> -->
