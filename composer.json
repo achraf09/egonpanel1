@@ -14,7 +14,9 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3",
         "maatwebsite/excel": "~2.1.0",
-        "yajra/laravel-datatables-oracle": "^6.0"
+        "yajra/laravel-datatables-oracle": "^6.0",
+        "chumper/zipper": "1.0.x"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

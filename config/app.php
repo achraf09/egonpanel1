@@ -193,6 +193,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Chumper\Zipper\ZipperServiceProvider::class,
 
     ],
 
@@ -243,6 +244,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
+        'Zipper' => Chumper\Zipper\Zipper::class,
+
         /*
          * Package Aliases
          */

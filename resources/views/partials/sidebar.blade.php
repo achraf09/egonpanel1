@@ -101,6 +101,15 @@
                 </a>
             </li>
             @endcan
+
+            @can('betriebspartner_access')
+            <li class="{{ $request->segment(2) == 'partnercompanies' ? 'active' : '' }}">
+                <a href="{{ route('admin.offers.index') }}">
+                    <i class="fa fa-gift"></i>
+                    <span class="title">Angebote</span>
+                </a>
+            </li>
+            @endcan
 <!-- ################################################################################################# -->
 
 
